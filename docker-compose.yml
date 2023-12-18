@@ -6,19 +6,36 @@ services:
     command: ["sh", "-c", "npm run dev"]
     ports:
       - "5173:5173"
+    env_file:
+      - .env
     volumes:
       - ./frontend:/frontend
       - /frontend/node_modules
     depends_on:
       - backend
+      - users-service-db
 
   backend:
     build: ./backend
-    command: "python manage.py runserver 0.0.0.0:8000"
+    command: ["sh", "-c", "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
     volumes:
       - ./backend:/backend
+    env_file:
+      - .env
     ports:
       - "8000:8000"
+    depends_on:
+      - users-service-db
+
+  users-service-db:
+    image: postgres:latest
+    container_name: users-service-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: userspostgres
+      POSTGRES_USER: userspostgres
+      POSTGRES_PASSWORD: userspostgres
 
 volumes:
   data:
