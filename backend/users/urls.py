@@ -2,5 +2,5 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("microsoft/", views.login_microsoft)
+    path('current/user/', views.get_user),
 ]
