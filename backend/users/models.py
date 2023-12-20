@@ -1,7 +1,10 @@
 from django.db import models
 
 class User(models.Model):
-    username = models.CharField(max_lenght=100)
+    username = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
-    pfp = models.CharField(max_lenght=300)
-    isActive = models.BooleanField(default=True)
+    name = models.CharField(max_length=100)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        db_table = "users"
