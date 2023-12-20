@@ -38,7 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_auth_adfs',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'users'
 ]
 
 MIDDLEWARE = [
@@ -49,7 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django_auth_adfs.middleware.LoginRequiredMiddleware'
+    'allauth.account.middleware.AccountMiddleware'
 ]
 
 ROOT_URLCONF = 'valium_backend.urls'
@@ -129,29 +133,26 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTHENTICATION_BACKENDS = (
-    'django_auth_adfs.backend.AdfsAuthCodeBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-LOGIN_URL = "django_auth_adfs:login"
-LOGIN_REDIRECT_URL = "/"
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get('GOOGLE_CLIENT_ID')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get('GOOGLE_CLIENT_SECRET')
 
-# Client secret is not public information. Should store it as an environment variable.
-
-client_id = os.environ.get('AZURE_CLIENT_ID')
-client_secret = os.environ.get('AZURE_CLIENT_SECRET')
-tenant_id = os.environ.get('AZURE_TENANT_ID')
-
-
-AUTH_ADFS = {
-    'AUDIENCE': client_id,
-    'CLIENT_ID': client_id,
-    'CLIENT_SECRET': client_secret,
-    'CLAIM_MAPPING': {'first_name': 'given_name',
-                      'last_name': 'family_name',
-                      'email': 'upn'},
-    'GROUPS_CLAIM': 'roles',
-    'MIRROR_GROUPS': True,
-    'USERNAME_CLAIM': 'upn',
-    'TENANT_ID': tenant_id,
-    'RELYING_PARTY_ID': client_id,
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
+        'APP': {
+            'client_id': SOCIAL_AUTH_GOOGLE_OAUTH2_KEY,
+            'secret': SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET,
+        }
+    }
 }
+
+LOGIN_REDIRECT_URL = '/api/auth/successful/'
