@@ -13,7 +13,7 @@ services:
       - /frontend/node_modules
     depends_on:
       - backend
-      - users-service-db
+      - db
 
   backend:
     build: ./backend
@@ -25,17 +25,17 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - users-service-db
+      - db
 
-  users-service-db:
+  db:
     image: postgres:latest
-    container_name: users-service-db
+    container_name: db
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_DB: userspostgres
-      POSTGRES_USER: userspostgres
-      POSTGRES_PASSWORD: userspostgres
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
 
 volumes:
   data:
