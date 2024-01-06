@@ -82,11 +82,11 @@ WSGI_APPLICATION = 'valium_backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('USERS_DB', 'user_service'),
-        'USER': os.environ.get('USERS_DB_USER', 'user_service'),
-        'PASSWORD': os.environ.get('USERS_DB_PASSWORD', 'user_password'),
-        'HOST': "users-service-db",
-        'PORT': os.environ.get('USERS_DB_PORT', '5432'),
+        'NAME': os.environ.get('DB'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': "db",
+        'PORT': os.environ.get('DB_PORT', '5432'),
     }
 }
 
@@ -155,4 +155,4 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-LOGIN_REDIRECT_URL = '/api/auth/successful/'
+LOGIN_REDIRECT_URL = '/api/v1/successful/'
