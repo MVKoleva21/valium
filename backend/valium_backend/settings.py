@@ -155,4 +155,4 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-LOGIN_REDIRECT_URL = '/api/auth/successful/'
+LOGIN_REDIRECT_URL = '/api/v1/successful/'
