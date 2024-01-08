@@ -1,6 +1,6 @@
-FROM node 
+FROM node
 
-WORKDIR /frontend 
+WORKDIR /frontend
 
 COPY package.json .
 
