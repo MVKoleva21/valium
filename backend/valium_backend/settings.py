@@ -42,10 +42,12 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    'users'
+    'users',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -156,3 +158,8 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 LOGIN_REDIRECT_URL = '/api/v1/successful/'
+
+
+CORS_ALLOWED_ORIGINS = [
+    os.environ.get('BASE_URL_FRONTEND'),
+]
