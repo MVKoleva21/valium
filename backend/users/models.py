@@ -11,3 +11,11 @@ class User(models.Model):
 
     class Meta:
         db_table = "users"
+
+
+class UserToRecieve(models.Model):
+    transfer_from = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    transfer_amount = models.ForeignKey(Wallet, on_delete=models.CASCADE, default=None)
+
+    class Meta:
+        db_table = "transfer_users"

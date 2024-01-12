@@ -1,9 +1,51 @@
 from django.shortcuts import redirect, get_object_or_404
 from django.http import JsonResponse, HttpResponse
 from django.forms.models import model_to_dict
-from .models import User
+from .models import User, UserToRecieve
 from wallets.models import Wallet
 import json
+
+def add_users_to_recieve(request):
+    if not request.user.is_authenticated:
+        return HttpResponse(status=401)
+
+    body = json.loads(request.body.decode("utf-8"))
+    user = get_object_or_404(User, pk=request.user.id) 
+    users_to_recieve = UserToRecieve.objects.filter(transfer_from=user)
+
+    for i in body:
+        if not users_to_recieve:
+            temp_user = get_object_or_404(User, email=i['user'])
+            transfer_wallet = Wallet.objects.create(
+                    bgn=i["amount"]["bgn"],
+                    eur=i["amount"]["eur"],
+                    btc=i["amount"]["btc"],
+                    etc=i["amount"]["etc"]
+                    )
+
+            new_user_to_recieve = UserToRecieve.objects.create(transfer_from=temp_user, transfer_amount=transfer_wallet)
+        else:
+            for j in users_to_recieve:
+                temp_user = get_object_or_404(User, email=i['user'])
+
+                if temp_user == j.transfer_from:
+                    j.transfer_amount.bgn = i["amount"]["bgn"]
+                    j.transfer_amount.eur = i["amount"]["eur"]
+                    j.transfer_amount.btc = i["amount"]["btc"]
+                    j.transfer_amount.etc = i["amount"]["etc"]
+
+                    j.transfer_amount.save()
+                else:
+                    transfer_wallet = Wallet.objects.create(
+                        bgn=i["amount"]["bgn"],
+                        eur=i["amount"]["eur"],
+                        btc=i["amount"]["btc"],
+                        etc=i["amount"]["etc"]
+                    )
+
+                    new_user_to_recieve = UserToRecieve.objects.create(transfer_from=temp_user, transfer_amount=transfer_wallet)
+
+    return JsonResponse(list(users_to_recieve.values()), safe=False)
 
 def get_user(request):
     if not request.user.is_authenticated:
@@ -12,8 +54,17 @@ def get_user(request):
     user = get_object_or_404(User, pk=request.user.id) 
 
     user_dict = model_to_dict(user)
-    wallet_dict = model_to_dict(user.wallet)
-    user_dict["wallet"] = wallet_dict
+
+    users_to_recieve = UserToRecieve.objects.filter(transfer_from=user)
+
+    user_dict["transfer_to"] = list(users_to_recieve.values())
+
+    for i in user_dict["transfer_to"]:
+        transfer_amount = Wallet.objects.get(pk=i["transfer_amount_id"])
+        i["transfer_amount"] = model_to_dict(transfer_amount)
+
+    user_dict["wallet"] = model_to_dict(user.wallet)
+
     return JsonResponse(user_dict)
 
 def new_user(request):
@@ -40,7 +91,7 @@ def redirect_successful(request):
     
     try:
         user = User.objects.get(email=request.user.email)
-        return redirect('/api/v1/current/user/')
+        return redirect('/api/v1/users/current/')
     except User.DoesNotExist:
         return JsonResponse({"error": "Oh no user does not exist"})
     
