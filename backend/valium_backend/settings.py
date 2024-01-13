@@ -31,6 +31,8 @@ ALLOWED_HOSTS = [
     "valium-backend.azurewebsites.net"
 ]
 
+if os.environ.get('ENV') == "prod":
+    ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
 
 # Application definition
 
