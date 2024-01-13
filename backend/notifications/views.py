@@ -5,6 +5,16 @@ from users.models import User
 from .models import Notification
 import json
 
+def read_notification(request, id):
+    if not request.user.is_authenticated:
+        return HttpResponse(status=401)   
+
+    notification = Notification.objects.get(pk=id)
+    notification.is_read = True
+    notification.save()
+
+    return JasonResponse(model_to_dict(notification))
+
 def add_notification(request):
     if not request.user.is_authenticated:
         return HttpResponse(status=401)   

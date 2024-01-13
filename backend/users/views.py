@@ -5,6 +5,18 @@ from .models import User, UserToRecieve
 from wallets.models import Wallet
 import json
 
+def suspend_user(request):
+    pass
+
+def get_users_to_confirm(request):
+    if not request.user.is_authenticated:
+        return HttpResponse(status=401)
+
+    user = get_object_or_404(User, pk=request.user.id) 
+    users_to_confirm = UserToRecieve.objects.filter(transfer_from=user)
+
+    return JsonResponse(list(users_to_confirm.values()), safe=False)
+
 def add_users_to_recieve(request):
     if not request.user.is_authenticated:
         return HttpResponse(status=401)
@@ -14,6 +26,9 @@ def add_users_to_recieve(request):
     users_to_recieve = UserToRecieve.objects.filter(transfer_from=user)
 
     for i in body:
+        if (i["amount"]["bgn"] > user.wallet.bgn) or (i["amount"]["eur"] > user.wallet.eur) or (i["amount"]["btc"] > user.wallet.btc) or (i["amount"]["etc"] > user.wallet.etc):
+            return JsonRsponse({"error": "Not enough ballance"})
+
         if not users_to_recieve:
             temp_user = get_object_or_404(User, email=i['user'])
             transfer_wallet = Wallet.objects.create(
@@ -23,12 +38,17 @@ def add_users_to_recieve(request):
                     etc=i["amount"]["etc"]
                     )
 
-            new_user_to_recieve = UserToRecieve.objects.create(transfer_from=temp_user, transfer_amount=transfer_wallet)
+            new_user_to_recieve = UserToRecieve.objects.create(transfer_from=user, transfer_amount=transfer_wallet, transfer_to=temp_user)
         else:
             for j in users_to_recieve:
+                user.wallet.bgn -= i["amount"]["bgn"]
+                user.wallet.eur -= i["amount"]["eur"]
+                user.wallet.btc -= i["amount"]["btc"]
+                user.wallet.etc -= i["amount"]["etc"]
+
                 temp_user = get_object_or_404(User, email=i['user'])
 
-                if temp_user == j.transfer_from:
+                if temp_user == j.transfer_to:
                     j.transfer_amount.bgn = i["amount"]["bgn"]
                     j.transfer_amount.eur = i["amount"]["eur"]
                     j.transfer_amount.btc = i["amount"]["btc"]
@@ -43,7 +63,7 @@ def add_users_to_recieve(request):
                         etc=i["amount"]["etc"]
                     )
 
-                    new_user_to_recieve = UserToRecieve.objects.create(transfer_from=temp_user, transfer_amount=transfer_wallet)
+                    new_user_to_recieve = UserToRecieve.objects.create(transfer_from=user, transfer_amount=transfer_wallet, transfer_to=temp_user)
 
     return JsonResponse(list(users_to_recieve.values()), safe=False)
 
