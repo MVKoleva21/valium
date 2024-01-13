@@ -9,6 +9,7 @@ class User(models.Model):
     is_active = models.BooleanField(default=True)
     is_suspended = models.BooleanField(default=False)
     wallet = models.ForeignKey(Wallet, on_delete=models.CASCADE, default=None)
+    gender = models.CharField(max_length=100, default="None")
 
     class Meta:
         db_table = "users"

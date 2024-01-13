@@ -174,6 +174,7 @@ def new_user(request):
         name=body["name"],
         pin=body["pin"],
         is_active=True,
+        gender=body["gender"],
         wallet=new_wallet)
 
     return JsonResponse(model_to_dict(new_user))
