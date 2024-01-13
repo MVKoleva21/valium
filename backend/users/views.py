@@ -4,6 +4,7 @@ from django.forms.models import model_to_dict
 from .models import User, UserToRecieve
 from wallets.models import Wallet
 from notifications.models import Notification
+from inbox.models import InboxEntry
 import json
 
 def confirm_death(request):
@@ -47,6 +48,7 @@ def confirm_death(request):
             user_to_confirm.wallet.etc -= transfer_amount.etc
             user_to_confirm.wallet.save()
 
+            InboxEntry.objects.create(user=user_to, message=i.message, wallet=user_to.wallet)
 
         users_to_confirm.delete()
 
@@ -109,7 +111,7 @@ def add_users_to_recieve(request):
                     etc=i["amount"]["etc"]
                     )
 
-            new_user_to_recieve = UserToRecieve.objects.create(transfer_from=user, transfer_amount=transfer_wallet, transfer_to=temp_user)
+            new_user_to_recieve = UserToRecieve.objects.create(transfer_from=user, transfer_amount=transfer_wallet, transfer_to=temp_user, message=i["message"])
         else:
             for j in users_to_recieve:
                 user.wallet.bgn -= i["amount"]["bgn"]
@@ -134,7 +136,7 @@ def add_users_to_recieve(request):
                         etc=i["amount"]["etc"]
                     )
 
-                    new_user_to_recieve = UserToRecieve.objects.create(transfer_from=user, transfer_amount=transfer_wallet, transfer_to=temp_user)
+                    new_user_to_recieve = UserToRecieve.objects.create(transfer_from=user, transfer_amount=transfer_wallet, transfer_to=temp_user, message=i["message"])
 
     return JsonResponse(list(users_to_recieve.values()), safe=False)
 

@@ -18,6 +18,7 @@ class UserToRecieve(models.Model):
     transfer_from = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name='transfer_from_set')
     transfer_to = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     transfer_amount = models.ForeignKey(Wallet, on_delete=models.CASCADE, default=None)
+    message = models.TextField(blank=True)
 
     class Meta:
         db_table = "transfer_users"
