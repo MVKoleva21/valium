@@ -26,7 +26,10 @@ SECRET_KEY = 'django-insecure-tum2n0^ylzozw1q308^&lq@7za5$t2-gg9oc9yso0qt&o$f*yh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "localhost",
+    "valium-backend.azurewebsites.net"
+]
 
 
 # Application definition
