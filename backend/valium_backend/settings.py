@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'users',
     'wallets',
-    'notifications'
+    'notifications',
+    'inbox'
 ]
 
 MIDDLEWARE = [

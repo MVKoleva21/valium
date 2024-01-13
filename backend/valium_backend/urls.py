@@ -23,4 +23,5 @@ urlpatterns = [
     path('api/v1/wallets/', include('wallets.urls')),
     path('api/v1/users/', include("users.urls")),
     path('api/v1/notifications/', include('notifications.urls')),
+    path('api/v1/inbox/', include('inbox.urls')),
 ]
