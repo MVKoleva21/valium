@@ -30,6 +30,26 @@ def confirm_death(request):
     user_to_confirm.is_active = False
     user_to_confirm.save()
 
+    if not user_to_confirm.is_active:
+        for i in users_to_confirm:
+            user_to = User.objects.get(pk=i.transfer_to_id)
+            transfer_amount = Wallet.objects.get(pk=i.transfer_amount_id)
+            
+            user_to.wallet.bgn += transfer_amount.bgn
+            user_to.wallet.eur += transfer_amount.eur
+            user_to.wallet.btc += transfer_amount.btc
+            user_to.wallet.etc += transfer_amount.etc
+            user_to.wallet.save()
+
+            user_to_confirm.wallet.bgn -= transfer_amount.bgn
+            user_to_confirm.wallet.eur -= transfer_amount.eur
+            user_to_confirm.wallet.btc -= transfer_amount.btc
+            user_to_confirm.wallet.etc -= transfer_amount.etc
+            user_to_confirm.wallet.save()
+
+
+        users_to_confirm.delete()
+
     return JsonResponse(model_to_dict(user_to_confirm))
 
 def suspend_user(request):
