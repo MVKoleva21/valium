@@ -7,11 +7,11 @@ export default function Home() {
         <div className="absolute w-[2604px] h-[4242px] top-[-367px] left-[-660px]">
           <div className="absolute w-[2604px] h-[4242px] top-0 left-0">
             <div className="absolute w-[629px] h-[1096px] top-[3146px] left-[1730px]">
-              <div className="sticky w-[545px] h-[1096px] top-0 left-[84px] rounded-[272.5px/548px] rotate-180 blur-[350px] [background:linear-gradient(180deg,rgba(112.2,0,255,0)_0%,rgb(255,41.44,195.2)_100%)]">
+              <div className="relative w-[545px] h-[796px] top-[300px] left-[84px] rounded-[272.5px/548px] rotate-180 blur-[350px] [background:linear-gradient(180deg,rgba(112.2,0,255,0)_0%,rgb(255,41.44,195.2)_100%)]">
                 <div className="sticky w-[279px] h-[480px] top-[69px] left-[173px] blur-[200px] [background:linear-gradient(180deg,rgba(24,75,255,0)_0%,rgb(23.37,74.33,255)_100%)]" />
               </div>
               <img
-                className="absolute w-[133px] h-[193px] top-[185px] left-0"
+                className="absolute w-[90px] h-[90px] top-[185px] left-0"
                 alt="Star"
                 src="/public/star-1.svg"
               />
@@ -19,7 +19,7 @@ export default function Home() {
             <div className="absolute w-[1599px] h-[1482px] top-[2171px] left-[529px]">
               <div className="sticky w-[564px] h-[708px] top-[141px] left-0 rounded-[282px/354px] rotate-180 blur-[200px] [background:linear-gradient(180deg,rgba(255,0,0,0)_0%,rgb(255,118.32,41.44)_100%)]" />
               <img
-                className="absolute w-[198px] h-[259px] top-[82px] left-[311px]"
+                className="absolute w-[90px] h-[90px] top-[82px] left-[311px]"
                 alt="Star"
                 src="/public/star-2.svg"
               />
@@ -51,7 +51,7 @@ export default function Home() {
               <img
                 className="absolute w-[715px] h-[1045px] top-[1538px] left-[1500px]"
                 alt="Looper"
-                src="/public/looper.png"
+                src="/public/looper-2.png"
               />
               <div className="flex w-[780px] items-center top-[1511px] left-[1115px] flex-col gap-[32px] absolute">
                 <div className="inline-flex flex-col items-center gap-[16px] relative flex-[0_0_auto]">
