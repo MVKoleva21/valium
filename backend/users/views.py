@@ -3,10 +3,61 @@ from django.http import JsonResponse, HttpResponse
 from django.forms.models import model_to_dict
 from .models import User, UserToRecieve
 from wallets.models import Wallet
+from notifications.models import Notification
 import json
 
+def confirm_death(request):
+    if not request.user.is_authenticated:
+        return HttpResponse(status=401)
+
+    user = get_object_or_404(User, pk=request.user.id)
+    body = json.loads(request.body.decode("utf-8"))
+
+    user_to_confirm = User.objects.get(email=body["user"])
+
+    if not user_to_confirm.is_suspended:
+        return JsonReponse({"error": "User not suspended"})
+
+    users_to_confirm = UserToRecieve.objects.filter(transfer_from=user_to_confirm)
+
+    for i, j in enumerate(users_to_confirm):
+        if user.id == j.transfer_to_id:
+            break;
+
+        elif i == len(users_to_confirm) - 1:
+            return JsonResponse({"error": "User not allowed to confirm"})
+
+    user_to_confirm.is_active = False
+    user_to_confirm.save()
+
+    return JsonResponse(model_to_dict(user_to_confirm))
+
 def suspend_user(request):
-    pass
+    if not request.user.is_authenticated:
+        return HttpResponse(status=401)
+
+    user = get_object_or_404(User, pk=request.user.id)
+    body = json.loads(request.body.decode("utf-8"))
+
+    user_to_suspend = User.objects.get(email=body["user"])
+    users_to_confirm = UserToRecieve.objects.filter(transfer_from=user_to_suspend)
+
+    for i, j in enumerate(users_to_confirm):
+        if user.id == j.transfer_to_id:
+            break;
+
+        elif i == len(users_to_confirm) - 1:
+            return JsonResponse({"error": "User not allowed to suspend"})
+
+    user_to_suspend.is_suspended = True
+    user_to_suspend.save()
+
+    for i in users_to_confirm:
+        user_to_notify = User.objects.get(pk=i.transfer_to_id)
+
+        Notification.objects.create(user=user_to_notify, message=f"Do you confirm the death of {user_to_suspend.name}?")
+
+    return JsonResponse(model_to_dict(user_to_suspend))
 
 def get_users_to_confirm(request):
     if not request.user.is_authenticated:

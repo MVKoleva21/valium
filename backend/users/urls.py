@@ -7,4 +7,6 @@ urlpatterns = [
     path('new/', views.new_user),
     path('add/recieve/', views.add_users_to_recieve),
     path('get/confirm', views.get_users_to_confirm),
+    path('suspend/', views.suspend_user),
+    path('confirm/', views.confirm_death),
 ]
