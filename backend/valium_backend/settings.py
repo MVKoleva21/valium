@@ -171,3 +171,10 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 LOGIN_REDIRECT_URL = '/api/v1/users/login/successful/'
+
+CORS_ALLOWED_ORIGINS = [
+    os.environ.get('BASE_URL_FRONTEND')
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
