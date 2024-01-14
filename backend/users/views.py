@@ -6,6 +6,7 @@ from wallets.models import Wallet
 from notifications.models import Notification
 from inbox.models import InboxEntry
 import json
+import os
 
 def confirm_death(request):
     if not request.user.is_authenticated:
@@ -185,7 +186,7 @@ def redirect_successful(request):
     
     try:
         user = User.objects.get(email=request.user.email)
-        return redirect('/api/v1/users/current/')
+        return redirect(f"{os.environ.get('BASE_URL_FRONTEND')}")
     except User.DoesNotExist:
         return JsonResponse({"error": "Oh no user does not exist"})
     
