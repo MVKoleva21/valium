@@ -100,7 +100,7 @@ def add_users_to_recieve(request):
     users_to_recieve = UserToRecieve.objects.filter(transfer_from=user)
 
     for i in body:
-        if (i["amount"]["bgn"] > user.wallet.bgn) or (i["amount"]["eur"] > user.wallet.eur) or (i["amount"]["btc"] > user.wallet.btc) or (i["amount"]["etc"] > user.wallet.etc):
+        if (float(i["amount"]["bgn"]) > user.wallet.bgn) or (float(i["amount"]["eur"]) > user.wallet.eur) or (float(i["amount"]["btc"]) > user.wallet.btc) or (float(i["amount"]["etc"]) > user.wallet.etc):
             return JsonRsponse({"error": "Not enough ballance"})
 
         if not users_to_recieve:
@@ -115,26 +115,26 @@ def add_users_to_recieve(request):
             new_user_to_recieve = UserToRecieve.objects.create(transfer_from=user, transfer_amount=transfer_wallet, transfer_to=temp_user, message=i["message"])
         else:
             for j in users_to_recieve:
-                user.wallet.bgn -= i["amount"]["bgn"]
-                user.wallet.eur -= i["amount"]["eur"]
-                user.wallet.btc -= i["amount"]["btc"]
-                user.wallet.etc -= i["amount"]["etc"]
+                user.wallet.bgn -= float(i["amount"]["bgn"])
+                user.wallet.eur -= float(i["amount"]["eur"])
+                user.wallet.btc -= float(i["amount"]["btc"])
+                user.wallet.etc -= float(i["amount"]["etc"])
 
                 temp_user = get_object_or_404(User, email=i['user'])
 
                 if temp_user == j.transfer_to:
-                    j.transfer_amount.bgn = i["amount"]["bgn"]
-                    j.transfer_amount.eur = i["amount"]["eur"]
-                    j.transfer_amount.btc = i["amount"]["btc"]
-                    j.transfer_amount.etc = i["amount"]["etc"]
+                    j.transfer_amount.bgn = float(i["amount"]["bgn"])
+                    j.transfer_amount.eur = float(i["amount"]["eur"])
+                    j.transfer_amount.btc = float(i["amount"]["btc"])
+                    j.transfer_amount.etc = float(i["amount"]["etc"])
 
                     j.transfer_amount.save()
                 else:
                     transfer_wallet = Wallet.objects.create(
-                        bgn=i["amount"]["bgn"],
-                        eur=i["amount"]["eur"],
-                        btc=i["amount"]["btc"],
-                        etc=i["amount"]["etc"]
+                        bgn=float(i["amount"]["bgn"]),
+                        eur=float(i["amount"]["eur"]),
+                        btc=float(i["amount"]["btc"]),
+                        etc=float(i["amount"]["etc"])
                     )
 
                     new_user_to_recieve = UserToRecieve.objects.create(transfer_from=user, transfer_amount=transfer_wallet, transfer_to=temp_user, message=i["message"])

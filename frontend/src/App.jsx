@@ -8,6 +8,7 @@ import SignUp from './routes/SignUp'
 import Wills from './routes/Wills'
 import FinilizeAccout from './routes/FinalizeAccount'
 import Wallet from './routes/Wallet'
+import Will from './routes/Will'
 
 export default function App() {
   const BrowserRouter = createBrowserRouter([
@@ -16,7 +17,8 @@ export default function App() {
     { path: '/accounts/signup', element: <SignUp /> },
     { path: '/accounts/finilize', element: <FinilizeAccout /> },
     { path: '/wills', element: <Protected> <Wills /> </Protected>},
-    { path: '/wallet', element: <Protected> <Wallet /> </Protected>}
+    { path: '/wallet', element: <Protected> <Wallet /> </Protected>},
+    { path: '/will', element: <Protected> <Will /> </Protected>}
   ])
 
   return (
