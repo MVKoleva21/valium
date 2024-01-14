@@ -186,7 +186,7 @@ def redirect_successful(request):
     
     try:
         user = User.objects.get(email=request.user.email)
-        return redirect(f"{os.environ.get('BASE_URL_FRONTEND')}")
+        return redirect(f"{os.environ.get('BASE_URL_FRONTEND')}/wills")
     except User.DoesNotExist:
-        return JsonResponse({"error": "Oh no user does not exist"})
+        return redirect(f"{os.environ.get('BASE_URL_FRONTEND')}/accounts/finilize")
     

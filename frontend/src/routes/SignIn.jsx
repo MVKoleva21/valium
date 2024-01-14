@@ -34,8 +34,8 @@ export default function SignIn() {
     return (
         <> 
             <div className="w-screen h-screen text-white flex relative max-lg:flex-col overflow-x-hidden">
-                <img src="green.png" className="fixed left-[25%] select-none" draggable={false} alt="" />
-                <img src="purple.png" className="fixed right-0 bottom-0 select-none" draggable={false} alt="" />
+                <img src="/green.png" className="fixed left-[25%] select-none" draggable={false} alt="" />
+                <img src="/purple.png" className="fixed right-0 bottom-0 select-none" draggable={false} alt="" />
 
                 <div className="w-2/5 h-full bg-[#0B0B0F] flex items-center justify-center max-lg:w-full py-8">
                     <div className="z-10">
