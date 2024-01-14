@@ -51,7 +51,7 @@ export default function FinilizeAccout() {
             <div className="w-screen h-screen flex justify-center items-center bg-[#030016] text-white relative"> 
                 <img src="/finalize.png" className="fixed right-0 select-none" draggable={false} alt="" />
                 <img src="/finalize3.png" className="fixed right-0 bottom-0 select-none" draggable={false} alt="" />
-                <img src="/finalize2.png" className="fixed left-[#25] bottom-0 select-none" draggable={false} alt="" />
+                <img src="/finalize2.png" className="fixed left-[25%] bottom-0 select-none" draggable={false} alt="" />
 
                 <div className="p-4">
                     <h1 className="font-bold text-4xl">Finish profile set up</h1>
