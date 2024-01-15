@@ -10,6 +10,7 @@ import FinilizeAccout from './routes/FinalizeAccount'
 import Wallet from './routes/Wallet'
 import Will from './routes/Will'
 import Account from './routes/Account'
+import Connections from './routes/Connecions';
 
 export default function App() {
   const BrowserRouter = createBrowserRouter([
@@ -20,7 +21,8 @@ export default function App() {
     { path: '/wills', element: <Protected> <Wills /> </Protected>},
     { path: '/wallet', element: <Protected> <Wallet /> </Protected>},
     { path: '/will', element: <Protected> <Will /> </Protected>},
-    { path: '/account', element: <Protected> <Account /> </Protected>}
+    { path: '/account', element: <Protected> <Account /> </Protected>},
+    { path: '/connections', element: <Protected> <Connections /> </Protected> }
   ])
 
   return (
