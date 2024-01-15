@@ -29,6 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     "localhost",
     "valium-backend.azurewebsites.net",
+    "api.valiumonline.live"
 ]
 
 if os.environ.get('ENV') == "prod":
@@ -184,6 +185,3 @@ CORS_ALLOW_HEADERS = (
     'access-control-allow-origin',
     'content-type',
 )
-
-SESSION_COOKIE_SECURE = True
-SESSION_COOKIE_HTTPONLY=False
