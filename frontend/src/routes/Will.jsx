@@ -96,7 +96,7 @@ export default function Will() {
                                 <div className="flex items-center mt-10 w-full flex-col">
                                     <div className="w-[90%] flex items-center flex-col gap-10">
                                         <input className="w-full z-10 bg-[#ffffff05] rounded-[10px] p-4" placeholder="Bequeath: enter email" onChange={handleGetEmail} type="email" />                                    
-                                        <textarea name="" id="" cols="30" onChange={handleGetMessage} className="w-full z-10 bg-[#ffffff05] rounded-[10px] p-4" placeholder="Leave message..." rows="10"></textarea> 
+                                        <textarea name="" id="" cols="30" onChange={handleGetMessage} className="w-full resize-none z-10 bg-[#ffffff05] rounded-[10px] p-4" placeholder="Leave message..." rows="10"></textarea> 
                                     </div>
                                 </div>
                             </div>

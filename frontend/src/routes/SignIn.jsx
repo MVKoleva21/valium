@@ -1,9 +1,11 @@
 import { useState } from "react"
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 export default function SignIn() {
     let [userName, setUserName] = useState('')
     let [password, setPassword] = useState('')
+    let navigator = useNavigate()
 
     const userNameHandler = (e) => {
         setUserName(e.target.value)
@@ -65,7 +67,7 @@ export default function SignIn() {
                         
                         <div className="flex mt-16 text-[#333] relative items-center">
                             <p>Don't have an account?</p>
-                            <button className="right-0 absolute p-4 bg-[#333] rounded-lg text-white">Sign Up</button>
+                            <button onClick={() => navigator("/accounts/signup")} className="right-0 absolute p-4 bg-[#333] rounded-lg text-white">Sign Up</button>
                         </div>
                     </div> 
                 </div> 
