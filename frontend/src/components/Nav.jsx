@@ -5,6 +5,7 @@ import NavSubEntry from "./NavSubEntry"
 import { useNavigate } from 'react-router-dom'
 import Notification from './Notification'
 import Modal from "react-modal"
+import Message from "./Message"
 
 import walletIcon from '/icons/wallet.svg'
 import profileIcon from '/icons/profile.svg'
@@ -14,8 +15,10 @@ import notificationIcon from '/icons/notifications.svg'
 export default function Nav() {
     let [user, setUser] = useState({})
     let [notifications, setNotifications] = useState([])
+    let [inbox, setInbox] = useState([])
     let navigator = useNavigate()
     let [showNotificatoins, setShowNotifications] = useState(false)
+    let [showInbox, setShowInbox] = useState(false)
     let [showSuspendAccount, setSuspendAccount] = useState(false)
     let [email, setEmail] = useState('')
 
@@ -28,6 +31,12 @@ export default function Nav() {
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_BASE_URL_BACKEND}/api/v1/notifications/get`, {withCredentials: true}).then((res) => {
             setNotifications(res.data)
+        })
+    }, [])
+
+    useEffect(() => {
+        axios.get(`${import.meta.env.VITE_BASE_URL_BACKEND}/api/v1/inbox/get`, {withCredentials: true}).then((res) => {
+            setInbox(res.data)
         })
     }, [])
 
@@ -66,6 +75,7 @@ export default function Nav() {
                     <NavEntry title="Will" click={() => navigator("/will")} icon={willIcon} isSelected={window.location.pathname === "/will"}/>
                     <NavEntry title="Suspend Account" click={() => {setSuspendAccount(() => true)}} icon={notificationIcon} isSelected={false}/>
                     <NavEntry title="Notification" click={() => {setShowNotifications(() => !showNotificatoins)}} icon={notificationIcon} isSelected={false}/>
+                    <NavEntry title="Inbox" click={() => {setShowInbox(() => !showInbox)}} icon={notificationIcon} isSelected={false}/>
                 </div>
             </div>
 
@@ -74,6 +84,16 @@ export default function Nav() {
                     {
                         notifications.map((not) => {
                             return <Notification text={not.message}/>
+                        })
+                    }
+                </div>
+            } 
+
+            {showInbox && 
+                <div className="h-screen z-10 bg-black w-1/5 relative">
+                    {
+                        inbox.map((msg) => {
+                            return <Message text={msg.message}/>
                         })
                     }
                 </div>
