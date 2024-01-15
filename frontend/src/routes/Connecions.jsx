@@ -1,7 +1,19 @@
 import Nav from "../components/Nav"
+import Connection from "../components/Connection"
+import { useState, useEffect } from "react"
+import axios from "axios"
 
 export default function Connections() {
+    let [user, setUser] = useState({})
+    let [transferTo, setTransferTo] = useState([])
 
+    useEffect(() => {
+        axios.get(`${import.meta.env.VITE_BASE_URL_BACKEND}/api/v1/users/current`, {withCredentials: true}).then((res) => {
+            setUser(res.data)
+            setTransferTo(res.data.transfer_to)
+        })
+    }, [])
+    
     return (
         <div className="w-screen h-screen flex text-white relative">
             <Nav />
@@ -12,28 +24,14 @@ export default function Connections() {
             
                 <h1 className="text-white text-6xl font-bold tracking-wider max-md:max-w-full max-md:text-4xl">Connections</h1>
 
-
                 <div className="mx-auto mt-6">
-                    <form>
-                        <div className="gap-5 flex max-md:flex-col">
-                            <div className="flex flex-col items-stretch w-[52%]">
-                                <div className="border backdrop-blur-[70px] bg-opacity-50 bg-[#1C1C1C] flex grow flex-col p-8 py-14 mt-16 rounded-2xl">
-                                <label htmlFor="email">Email</label>
-                                </div>
-                            </div>
-
-                            <div className="flex flex-col items-stretch w-[52%]">
-                                <div className="border backdrop-blur-[70px] bg-opacity-50 bg-[#1C1C1C] flex grow flex-col p-8 py-14 mt-16 rounded-2xl">
-                                    <label htmlFor="email">Email</label>
-                                        <input
-                                            type="email"
-                                            name="email"
-                                            className="p-3 rounded-lg bg-[#ffffff05] border-2 border-[#ffffff10]"
-                                        />
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+                    <div className="gap-5 flex max-md:flex-col">
+                        {
+                            transferTo.map((e) => { 
+                                return <Connection email={e.transfer_to_email}/>
+                            })
+                        }
+                    </div>
                 </div>
              </div>
         </div>
