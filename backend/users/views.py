@@ -162,9 +162,6 @@ def get_user(request):
     return JsonResponse(user_dict)
 
 def new_user(request):
-    if not request.user.is_authenticated:
-        return HttpResponse(status=401)
-
     body = json.loads(request.body.decode("utf-8"))
 
     new_wallet = Wallet.objects.create()
