@@ -28,7 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "localhost",
-    "valium-backend.azurewebsites.net"
+    "valium-backend.azurewebsites.net",
+    "169.254.130.2"
 ]
 
 if os.environ.get('ENV') == "prod":
@@ -178,3 +179,10 @@ CORS_ALLOWED_ORIGINS = [
 
 CORS_ALLOW_CREDENTIALS = True
 SOCIALACCOUNT_LOGIN_ON_GET = True
+
+CORS_ALLOW_HEADERS = (
+    'access-control-allow-credentials',
+    'access-control-allow-origin',
+    'content-type',
+)
+
