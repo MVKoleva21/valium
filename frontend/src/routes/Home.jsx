@@ -26,7 +26,7 @@ export default function Home() {
                     <p className='mt-8 z-10 text-[#898CA9]'>digital will platform</p>
                     <div className='flex gap-5 mt-12'>
                         <button onClick={() => navigate('/accounts/signin')} className='px-5 z-10 py-3 bg-[#333] font-bold rounded-xl'>Sign In</button>
-                        <button onClick={() => navigate('/accounts/signup')} className='px-5 z-10 bg-gradient-to-r from-[#1F1FFF] to-[#AD00FF] py-3 font-bold rounded-xl'>Sign Up</button>
+                        <button onClick={() => navigate('/accounts/signup')} className='px-5 z-10 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-xl transition-transform transform-gpu hover:-translate-y-1 hover:shadow-md hover:shadow-[#ffffff7f]'>Sign Up</button>
                     </div>
                 </div>
 
