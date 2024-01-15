@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
+import Nav from "../components/Nav"
 
 
 export default function Wallet() {
@@ -41,7 +42,7 @@ export default function Wallet() {
             <img src="/Eclipse.png" className="absolute left-[25%] top-0 select-none" draggable={false} alt="" />
 
             <div className="h-screen w-screen flex text-white">
-                <div className="h-screen z-10 bg-black w-1/5"></div>
+                <Nav />
 
                 <div className="w-full h-full bg-[#030016] flex flex-col">
                     <h1 className="z-10 text-6xl mt-[60px] ml-[80px] font-bold">Wallet</h1>

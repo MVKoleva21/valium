@@ -1,0 +1,10 @@
+<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="icon/menu/chat-active" opacity="0.7" clip-path="url(#clip0_241_350)">
+<path id="Vector" d="M5.00008 14.3001H4.71013L4.50511 14.5051L2.36675 16.6435V3.33341C2.36675 2.80335 2.80335 2.36675 3.33342 2.36675H16.6668C17.1968 2.36675 17.6334 2.80335 17.6334 3.33341V13.3334C17.6334 13.8635 17.1968 14.3001 16.6668 14.3001H5.00008Z" stroke="white" stroke-width="1.4"/>
+</g>
+<defs>
+<clipPath id="clip0_241_350">
+<rect width="20" height="20" fill="white"/>
+</clipPath>
+</defs>
+</svg>
