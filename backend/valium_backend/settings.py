@@ -34,6 +34,7 @@ ALLOWED_HOSTS = [
 
 if os.environ.get('ENV') == "prod":
     ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
+    SESSION_COOKIE_DOMAIN = ".valiumonline.live"
 
 # Application definition
 
@@ -174,7 +175,7 @@ SOCIALACCOUNT_PROVIDERS = {
 LOGIN_REDIRECT_URL = '/api/v1/users/login/successful/'
 
 CORS_ALLOWED_ORIGINS = [
-    os.environ.get('BASE_URL_FRONTEND')
+    os.environ.get('BASE_URL_FRONTEND'),
 ]
 
 CORS_ALLOW_CREDENTIALS = True
