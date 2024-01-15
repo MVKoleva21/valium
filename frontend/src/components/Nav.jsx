@@ -69,9 +69,8 @@ export default function Nav() {
                 <div className="mt-[120px] ml-[40px]">
                     <NavEntry title="Wallet" click={() => navigator("/wallet")} icon={walletIcon} isSelected={window.location.pathname === "/wallet"}/>
                     <NavEntry title="Profile" icon={profileIcon} isSelected={false}/>
-                    <NavSubEntry title="Connections" click={() => navigator("/account")} isSelected={window.location.pathname === "/connections"} />
+                    <NavSubEntry title="Connections" click={() => navigator("/connections")} isSelected={window.location.pathname === "/connections"} />
                     <NavSubEntry title="Account" click={() => navigator("/account")} isSelected={window.location.pathname === "/account"} />
-
                     <NavEntry title="Will" click={() => navigator("/will")} icon={willIcon} isSelected={window.location.pathname === "/will"}/>
                     <NavEntry title="Suspend Account" click={() => {setSuspendAccount(() => true)}} icon={notificationIcon} isSelected={showSuspendAccount}/>
                     <NavEntry title="Notification" click={() => {setShowNotifications(() => !showNotificatoins)}} icon={notificationIcon} isSelected={showNotificatoins}/>

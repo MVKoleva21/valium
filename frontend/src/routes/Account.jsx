@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react"
 import axios from "axios"
 import Nav from "../components/Nav"
@@ -35,7 +34,7 @@ export default function Account() {
                                         <h1 className="text-4xl">{user.name}</h1>
                                     </div>
 
-                                    <div>
+                                    <div className="ml-44">
                                         <p className="font-bold text-sm text-[#888]">Gender</p>
                                         <h1 className="text-4xl">{user.gender != ""? user.gender: "Male"}</h1>
                                     </div>
