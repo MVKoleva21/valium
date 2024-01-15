@@ -1,0 +1,76 @@
+{
+  "routes": [
+      {
+          "route": "/accounts/signin",
+          "allowedRoles": [
+              "anonymous"
+          ]
+      },
+      {
+          "route": "/accounts/signup",
+          "allowedRoles": [
+              "anonymous"
+          ]
+      },
+      {
+          "route": "/accounts/finilize",
+          "allowedRoles": [
+              "anonymous"
+          ]
+      },
+      {
+          "route": "/wills",
+          "allowedRoles": [
+              "anonymous"
+          ]
+      },
+      {
+          "route": "/wallet",
+          "allowedRoles": [
+              "anonymous"
+          ]
+      },
+      {
+          "route": "/will",
+          "allowedRoles": [
+              "anonymous"
+          ]
+      },
+      {
+          "route": "/account",
+          "allowedRoles": [
+              "anonymous"
+          ]
+      },
+      
+  ],
+  "navigationFallback": {
+      "rewrite": "index.html",
+      "exclude": [
+          "/images/.{png,jpg,gif}",
+          "/css/*"
+      ]
+  },
+  "responseOverrides": {
+      "400": {
+          "rewrite": "/"
+      },
+      "401": {
+          "redirect": "/"
+      },
+      "403": {
+          "rewrite": "/"
+      },
+      "404": {
+          "rewrite": "/index.html",
+          "statusCode": 200
+      }
+  },
+  "mimeTypes": {
+      ".html": "text/html",
+      ".json": "text/json",
+      ".css": "text/css",
+      ".js": "text/javascript"
+  }
+
+}
