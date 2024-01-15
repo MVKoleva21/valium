@@ -14,21 +14,23 @@
 <p> It is digital will site where you can bequeath your digital assets to your loved ones and ensure your legacy </p>
 
 ## 📃 Documentation <a name="docs"></a>
-### Code & Team Documentation
-[Code Documentation]()
+### Team Documentation
 
-[Team Documentation]()
+[Team Documentation](https://github.com/MVKoleva21/valium/blob/docs/docs/valium%20-%20Documentation.docx)
 
 ### QA Documentation
-[QA Documentation]()
+[QA Documentation]([docs/Valium_-_QA_Documentation.xlsx](https://github.com/MVKoleva21/valium/blob/docs/docs/Valium_-_QA_Documentation.xlsx))
   
-[Test Plan]()
+[Test Plan](https://github.com/MVKoleva21/valium/blob/docs/docs/valium%20-%20Test%20Plan.docx)
 
 ### Presentation
-[Presentation]()
+[Presentation]([docs/VALIUM.pptx](https://github.com/MVKoleva21/valium/blob/docs/docs/VALIUM.pptx))
 
 ## 🚀 How to run <a name="install"></a>
 *The following instructions are going to show you how to set up the project*
+
+- Prerequisites<br></br>
+  1.Doccer
 
 - Installation
 1. Clone the repo:
@@ -38,7 +40,7 @@
     
 2. Open terminal in the project folder and run:
 ```
- python setup.py
+ doccer compose up
 ```
 
 ## 🖥️ Technologies used <a name="technologies"></a>
