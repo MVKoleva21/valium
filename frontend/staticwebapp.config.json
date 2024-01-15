@@ -17,30 +17,35 @@
       {
           "route": "/accounts/finilize",
           "allowedRoles": [
-              "authenticated"
+              "anonymous",
+              "authenticated",
           ]
       },
       {
           "route": "/wills",
           "allowedRoles": [
+              "anonymous",
               "authenticated"
           ]
       },
       {
           "route": "/wallet",
           "allowedRoles": [
+              "anonymous",
               "authenticated"
           ]
       },
       {
           "route": "/will",
           "allowedRoles": [
+              "anonymous",
               "authenticated"
           ]
       },
       {
           "route": "/account",
           "allowedRoles": [
+              "anonymous",
               "authenticated"
           ]
       },
