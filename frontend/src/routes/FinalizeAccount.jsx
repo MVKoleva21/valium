@@ -34,7 +34,7 @@ export default function FinilizeAccout() {
         e.preventDefault()
 
         const data = {
-            name: fname + lname,
+            name: fname + " " + lname,
             username: uname,
             pin: pin,
             gender: gender
