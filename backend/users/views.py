@@ -156,6 +156,7 @@ def get_user(request):
     for i in user_dict["transfer_to"]:
         transfer_amount = Wallet.objects.get(pk=i["transfer_amount_id"])
         i["transfer_amount"] = model_to_dict(transfer_amount)
+        i["transfer_to_email"] = User.objects.get(pk=i["transfer_to_id"]).email
 
     user_dict["wallet"] = model_to_dict(user.wallet)
 

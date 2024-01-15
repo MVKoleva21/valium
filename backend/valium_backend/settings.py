@@ -184,5 +184,3 @@ CORS_ALLOW_HEADERS = (
     'access-control-allow-origin',
     'content-type',
 )
-
-SECURE_HSTS_SECONDS = 31536000
