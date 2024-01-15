@@ -71,33 +71,34 @@ export default function Will() {
                 <div className="w-full h-full bg-[#030016] flex flex-col">
                     <h1 className="z-10 text-6xl mt-[60px] ml-[80px] font-bold">Will</h1>
 
-                    <div className="w-full h-full flex flex-col items-center z-10 justify-center">
+                    <div className="w-full h-full flex-grow flex-col items-center z-10 justify-center">
                         <div className="w-[90%] h-full flex gap-10 justify-center items-center">
-                            <div className="w-3/5 py-3 rounded-[16px] bg-[#1C1C1C60] h-[80%]">
-                                <h1 className="mt-[30px] ml-[60px] font-bold text-3xl">Transfer Money</h1>
-                                
-                                <div className="flex justify-center items-start mt-28 h-full">
-                                    <div className="z-10 w-[80%] gap-8 flex flex-col">
-                                        <input className="w-full z-10 bg-[#ffffff05] rounded-[10px] p-4" placeholder="BGN to transfer" onChange={handleValueChangeBgn} type="number" />                                    
-                                        <input className="w-full z-10 bg-[#ffffff05] rounded-[10px] p-4" placeholder="EUR to transfer" onChange={handleValueChangeEur} type="number" />                                    
-                                        <input className="w-full z-10 bg-[#ffffff05] rounded-[10px] p-4" placeholder="BTC to transfer" onChange={handleValueChangeBtc} type="number" />                                    
-                                        <input className="w-full z-10 bg-[#ffffff05] rounded-[10px] p-4" placeholder="ETC to transfer" onChange={handleValueChangeEtc} type="number" />                                    
+                            <div className="w-[90%] py-3 rounded-[16px] bg-[#1C1C1C60] h-[80%]">
+                                <div>
+                                    <div className="flex justify-center items-start mt-8 h-full">
+                                        <div className="z-10 w-[80%] gap-8 flex flex-col">
+                                            <h1 className="ml-[60px] font-bold text-3xl">Transfer Money</h1>
+                                            <p className="z-10 ml-[80px] text-[#c3c3c3]">Transfer money to bequeath to your beloved ones.</p>
+                                            <input className="w-full z-10 bg-[#ffffff05] rounded-[10px] p-4" placeholder="BGN to transfer" onChange={handleValueChangeBgn} type="number" />                                    
+                                            <input className="w-full z-10 bg-[#ffffff05] rounded-[10px] p-4" placeholder="EUR to transfer" onChange={handleValueChangeEur} type="number" />                                    
+                                            <input className="w-full z-10 bg-[#ffffff05] rounded-[10px] p-4" placeholder="BTC to transfer" onChange={handleValueChangeBtc} type="number" />                                    
+                                            <input className="w-full z-10 bg-[#ffffff05] rounded-[10px] p-4" placeholder="ETC to transfer" onChange={handleValueChangeEtc} type="number" />                                    
 
-                                        <button onClick={handleBequeath} className="p-2 mt-2 font-bold bg-gradient-to-r rounded-xl from-[#18C8FF] to-[#933FFE] z-10">Bequeath</button>
-                                    </div>
-                                </div>
-                                
-                            </div> 
-                            
-                            <div className="w-2/5 h-[80%] z-10 bg-[#1C1C1C60] rounded-[16px]">
-                                <h1 className="z-10 text-4xl mt-[60px] ml-[80px] font-bold">Leave A Message</h1>
-                                <p className="z-10 ml-[80px] text-[#555] mt-2">Upload message to bequeath to your beloved ones.</p>
+                                        </div>
 
-                                <div className="flex items-center mt-10 w-full flex-col">
-                                    <div className="w-[90%] flex items-center flex-col gap-10">
-                                        <input className="w-full z-10 bg-[#ffffff05] rounded-[10px] p-4" placeholder="Bequeath: enter email" onChange={handleGetEmail} type="email" />                                    
-                                        <textarea name="" id="" cols="30" onChange={handleGetMessage} className="w-full resize-none z-10 bg-[#ffffff05] rounded-[10px] p-4" placeholder="Leave message..." rows="10"></textarea> 
+                                        <div className="flex flex-col gap-8 z-10 w-[80%]">
+                                            <h1 className="z-10 text-4xl ml-[80px] font-bold">Leave A Message</h1>
+                                            <p className="z-10 ml-[80px] text-[#c3c3c3]">Upload message to bequeath to your beloved ones.</p>
+
+                                            <div className="flex items-center w-full flex-col">
+                                                <div className="flex flex-col w-[90%] gap-6">
+                                                    <input className="w-full z-10 bg-[#ffffff05] rounded-[10px] p-4" placeholder="Bequeath: enter email" onChange={handleGetEmail} type="email" />                                    
+                                                    <textarea name="" id="" cols="30" onChange={handleGetMessage} className="w-full resize-none z-10 bg-[#ffffff05] rounded-[10px] mb-6" placeholder="Leave message..." rows="10"></textarea> 
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+                                        <button onClick={handleBequeath} className="w-[36%] flex justify-center mx-auto px-24 py-2 z-10 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-xl hover:-translate-y-1 hover:shadow-md hover:shadow-[#ffffff7f]">Bequeath</button>
                                 </div>
                             </div>
                         </div>

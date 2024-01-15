@@ -56,7 +56,7 @@ export default function SignIn() {
                                     <input onChange={passwordHandler} type="password" placeholder="Password" className="p-2 bg-transparent relative"/>
                                 </div>
 
-                                <button className="mt-10 bg-gradient-to-r rounded-xl from-[#1F1FFF] to-[#AD00FF] font-bold p-4 text-xl" type="submit"> Sign In</button>
+                                <button className="px-5 z-10 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-xl transition-transform transform-gpu hover:-translate-y-1 hover:shadow-md hover:shadow-[#ffffff7f]" type="submit"> Sign In</button>
                             </form>
 
                             <div onClick={onSubmitGoogle} className="mt-9 p-2 bg-[#333] cursor-pointer rounded-[10px] w-full h-10 flex items-center justify-center">

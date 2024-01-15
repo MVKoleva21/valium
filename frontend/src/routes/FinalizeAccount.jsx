@@ -89,7 +89,7 @@ export default function FinilizeAccout() {
                             </select>
                         </div>
 
-                        <button type="submit" className="p-2 mt-2 font-bold bg-gradient-to-r rounded-xl from-[#18C8FF] to-[#933FFE] z-10">Save</button>
+                        <button type="submit" className="px-5 z-10 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-xl transition-transform transform-gpu hover:-translate-y-1 hover:shadow-md hover:shadow-[#ffffff7f]0">Save</button>
                     </form>
                 </div>
             </div>
