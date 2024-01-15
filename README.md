@@ -15,17 +15,16 @@
 
 ## 📃 Documentation <a name="docs"></a>
 ### Code & Team Documentation
-[Code Documentation]()
 
-[Team Documentation]()
+[Team Documentation](https://github.com/MVKoleva21/valium/blob/main/docs/valium%20-%20Documentation.docx)
 
 ### QA Documentation
-[QA Documentation]()
-  
-[Test Plan]()
+[QA Documentation](https://github.com/MVKoleva21/valium/blob/main/docs/Valium_-_QA_Documentation.xlsx)
+
+[Test Plan](https://github.com/MVKoleva21/valium/blob/main/docs/valium%20-%20Test%20Plan.docx)
 
 ### Presentation
-[Presentation]()
+[Presentation](https://github.com/MVKoleva21/valium/blob/main/docs/VALIUM.pptx)
 
 ## 🚀 How to run <a name="install"></a>
 *The following instructions are going to show you how to set up the project*
@@ -38,8 +37,10 @@
     
 2. Open terminal in the project folder and run:
 ```
- python setup.py
+ npm install
 ```
+
+3. Run docker and enjoy the project!
 
 ## 🖥️ Technologies used <a name="technologies"></a>
 ### IDE & version control system:
