@@ -29,7 +29,6 @@ DEBUG = True
 ALLOWED_HOSTS = [
     "localhost",
     "valium-backend.azurewebsites.net",
-    "169.254.130.2"
 ]
 
 if os.environ.get('ENV') == "prod":
@@ -186,3 +185,4 @@ CORS_ALLOW_HEADERS = (
     'content-type',
 )
 
+SECURE_HSTS_SECONDS = 31536000
