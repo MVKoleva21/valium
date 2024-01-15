@@ -184,3 +184,6 @@ CORS_ALLOW_HEADERS = (
     'access-control-allow-origin',
     'content-type',
 )
+
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_HTTPONLY=False
