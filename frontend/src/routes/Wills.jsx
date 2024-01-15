@@ -12,7 +12,7 @@ export default function Wills() {
                 <div className="text-5xl font-black mb-6 z-10">My digital will</div>
                 <p className="text-base font-normal mb-6 z-10">Choose between the three types of will, or more than one</p>
 
-                <div className="flex space-x-7 mb-10">
+                <div className="flex space-x-7 mt-10">
                     <div className="flex-auto max-w-xs bg-zinc-900 p-4 cursor-pointer rounded-lg z-10" onClick={() => navigator("/will")}>
                         <div className="text-base">
                             <h1 className="text-white text-3xl font-extrabold leading-10">Death</h1>
