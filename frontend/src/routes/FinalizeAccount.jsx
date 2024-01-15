@@ -27,7 +27,7 @@ export default function FinilizeAccout() {
     }
 
     const genderHandle = (e) => {
-        setGender(e.target.value)
+        setGender(() => e.target.value)
     }
 
     const handleSubmit = (e) => {
