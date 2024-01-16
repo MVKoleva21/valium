@@ -1,5 +1,6 @@
 import { useState } from "react"
 import axios from 'axios'
+import Cookies from 'js-cookie'
 
 export default function SignUp() {
     let [userName, setUserName] = useState('')
@@ -28,7 +29,12 @@ export default function SignUp() {
             remember: false
         }
 
-        axios.post(`${import.meta.env.VITE_BASE_URL_BACKEND}/api/v1/auth/signup/`, data, { withCredentials: true }).then((res) => {
+        axios.post(`${import.meta.env.VITE_BASE_URL_BACKEND}/api/v1/auth/signup/`, data, { 
+            withCredentials: true,
+            headers: {
+                "X-CSRFToken": Cookies.get('csrftoken')
+            }
+        }).then((res) => {
             console.log(res)
         })
     }

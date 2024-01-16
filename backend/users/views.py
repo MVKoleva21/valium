@@ -1,5 +1,4 @@
 from django.shortcuts import redirect, get_object_or_404
-from django.http import JsonResponse, HttpResponse
 from django.forms.models import model_to_dict
 from .models import User, UserToRecieve
 from wallets.models import Wallet
@@ -7,18 +6,22 @@ from notifications.models import Notification
 from inbox.models import InboxEntry
 import json
 import os
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
+
+@api_view(['POST'])
 def confirm_death(request):
     if not request.user.is_authenticated:
         return HttpResponse(status=401)
 
     user = get_object_or_404(User, pk=request.user.id)
-    body = json.loads(request.body.decode("utf-8"))
+    body = request.data
 
     user_to_confirm = User.objects.get(email=body["user"])
 
     if not user_to_confirm.is_suspended:
-        return JsonReponse({"error": "User not suspended"})
+        return Reponse({"error": "User not suspended"})
 
     users_to_confirm = UserToRecieve.objects.filter(transfer_from=user_to_confirm)
 
@@ -27,7 +30,7 @@ def confirm_death(request):
             break;
 
         elif i == len(users_to_confirm) - 1:
-            return JsonResponse({"error": "User not allowed to confirm"})
+            return Response({"error": "User not allowed to confirm"})
 
     user_to_confirm.is_active = False
     user_to_confirm.save()
@@ -53,14 +56,15 @@ def confirm_death(request):
 
         users_to_confirm.delete()
 
-    return JsonResponse(model_to_dict(user_to_confirm))
+    return Response(model_to_dict(user_to_confirm))
 
+@api_view(['POST'])
 def suspend_user(request):
     if not request.user.is_authenticated:
-        return HttpResponse(status=401)
+        return Response(status=401)
 
     user = get_object_or_404(User, pk=request.user.id)
-    body = json.loads(request.body.decode("utf-8"))
+    body = request.data
 
     user_to_suspend = User.objects.get(email=body["user"])
     users_to_confirm = UserToRecieve.objects.filter(transfer_from=user_to_suspend)
@@ -70,7 +74,7 @@ def suspend_user(request):
             break;
 
         elif i == len(users_to_confirm) - 1:
-            return JsonResponse({"error": "User not allowed to suspend"})
+            return Response({"error": "User not allowed to suspend"})
 
     user_to_suspend.is_suspended = True
     user_to_suspend.save()
@@ -80,28 +84,30 @@ def suspend_user(request):
 
         Notification.objects.create(user=user_to_notify, message=f"Do you confirm the death of {user_to_suspend.name}?")
 
-    return JsonResponse(model_to_dict(user_to_suspend))
+    return Response(model_to_dict(user_to_suspend))
 
+@api_view(['GET'])
 def get_users_to_confirm(request):
     if not request.user.is_authenticated:
-        return HttpResponse(status=401)
+        return Response(status=401)
 
     user = get_object_or_404(User, pk=request.user.id) 
     users_to_confirm = UserToRecieve.objects.filter(transfer_from=user)
 
-    return JsonResponse(list(users_to_confirm.values()), safe=False)
+    return Response(list(users_to_confirm.values()))
 
+@api_view(['POST'])
 def add_users_to_recieve(request):
     if not request.user.is_authenticated:
-        return HttpResponse(status=401)
+        return Response(status=401)
 
-    body = json.loads(request.body.decode("utf-8"))
+    body = request.data
     user = get_object_or_404(User, pk=request.user.id) 
     users_to_recieve = UserToRecieve.objects.filter(transfer_from=user)
 
     for i in body:
         if (float(i["amount"]["bgn"]) > user.wallet.bgn) or (float(i["amount"]["eur"]) > user.wallet.eur) or (float(i["amount"]["btc"]) > user.wallet.btc) or (float(i["amount"]["etc"]) > user.wallet.etc):
-            return JsonRsponse({"error": "Not enough ballance"})
+            return Rsponse({"error": "Not enough ballance"})
 
         if not users_to_recieve:
             temp_user = get_object_or_404(User, email=i['user'])
@@ -139,11 +145,12 @@ def add_users_to_recieve(request):
 
                     new_user_to_recieve = UserToRecieve.objects.create(transfer_from=user, transfer_amount=transfer_wallet, transfer_to=temp_user, message=i["message"])
 
-    return JsonResponse(list(users_to_recieve.values()), safe=False)
+    return Response(list(users_to_recieve.values()))
 
+@api_view(['GET'])
 def get_user(request):
     if not request.user.is_authenticated:
-        return HttpResponse(status=401)
+        return Response(status=401)
 
     user = get_object_or_404(User, pk=request.user.id) 
 
@@ -160,11 +167,14 @@ def get_user(request):
 
     user_dict["wallet"] = model_to_dict(user.wallet)
 
-    return JsonResponse(user_dict)
+    return Response(user_dict)
 
+@api_view(['POST'])
 def new_user(request):
-    body = json.loads(request.body.decode("utf-8"))
+    if not request.user.is_authenticated:
+        return Response(status=401)
 
+    body = request.data
     new_wallet = Wallet.objects.create()
 
     new_user = User.objects.create(
@@ -176,11 +186,12 @@ def new_user(request):
         gender=body["gender"],
         wallet=new_wallet)
 
-    return JsonResponse(model_to_dict(new_user))
+    return Response(model_to_dict(new_user))
 
+@api_view(['GET'])
 def redirect_successful(request):
     if not request.user.is_authenticated:
-        return HttpResponse(status=401)
+        return Response(status=401)
     
     try:
         user = User.objects.get(email=request.user.email)

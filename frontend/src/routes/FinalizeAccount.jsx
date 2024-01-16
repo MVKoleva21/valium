@@ -1,6 +1,7 @@
 import { useState } from "react"
 import axios from "axios"
 import { useNavigate } from 'react-router-dom'
+import Cookies from "js-cookie"
  
 export default function FinilizeAccout() {
     let [fname, setFname] = useState("")
@@ -41,7 +42,12 @@ export default function FinilizeAccout() {
         }
 
 
-        axios.post(`${import.meta.env.VITE_BASE_URL_BACKEND}/api/v1/users/new/`, data, { withCredentials: true }).then((res) => {
+        axios.post(`${import.meta.env.VITE_BASE_URL_BACKEND}/api/v1/users/new/`, data, { 
+            withCredentials: true,
+            headers: {
+                "X-CSRFToken": Cookies.get('csrftoken')
+            }
+        }).then((res) => {
             navigator("/wills")
         })
     }

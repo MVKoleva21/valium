@@ -4,52 +4,50 @@
           "route": "/accounts/signin",
           "allowedRoles": [
               "anonymous",
-              "authenticated"
           ]
       },
       {
           "route": "/accounts/signup",
           "allowedRoles": [
               "anonymous",
-              "authenticated"
           ]
       },
       {
           "route": "/accounts/finilize",
           "allowedRoles": [
               "anonymous",
-              "authenticated",
           ]
       },
       {
           "route": "/wills",
           "allowedRoles": [
               "anonymous",
-              "authenticated"
           ]
       },
       {
           "route": "/wallet",
           "allowedRoles": [
               "anonymous",
-              "authenticated"
           ]
       },
       {
           "route": "/will",
           "allowedRoles": [
               "anonymous",
-              "authenticated"
           ]
       },
       {
           "route": "/account",
           "allowedRoles": [
               "anonymous",
-              "authenticated"
           ]
       },
-      
+      {
+          "route": "/connections",
+          "allowedRoles": [
+              "anonymous",
+          ]
+      },
   ],
   "navigationFallback": {
       "rewrite": "index.html",

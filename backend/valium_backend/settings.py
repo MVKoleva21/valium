@@ -39,7 +39,6 @@ if os.environ.get('ENV') == "prod":
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -52,14 +51,18 @@ INSTALLED_APPS = [
     'users',
     'wallets',
     'notifications',
-    'inbox'
+    'inbox',
+    'rest_framework',
 ]
+
+CSRF_TRUSTED_ORIGINS = [os.environ.get('BASE_URL_FRONTEND')]
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -185,4 +188,5 @@ CORS_ALLOW_HEADERS = (
     'access-control-allow-credentials',
     'access-control-allow-origin',
     'content-type',
+    'x-csrftoken'
 )
