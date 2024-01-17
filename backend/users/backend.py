@@ -7,7 +7,6 @@ def get_user_info(id):
     user = get_object_or_404(User, pk=id) 
     user_dict = model_to_dict(user)
 
-    users_to_recieve = UserToRecieve.objects.filter(transfer_from=user)
     user_dict["wallet"] = model_to_dict(user.wallet)
 
     return user_dict

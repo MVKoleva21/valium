@@ -193,3 +193,8 @@ CSRF_TRUSTED_ORIGINS = [
     os.environ.get('BASE_URL_FRONTEND'),
     "https://*.valiumonline.live"
 ]
+
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SAMESITE = 'None'

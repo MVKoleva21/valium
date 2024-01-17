@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.forms.models import model_to_dict
-from .models import User, UserToRecieve
+from .models import User
 from wallets.models import Wallet
 from notifications.models import Notification
 from inbox.models import InboxEntry
