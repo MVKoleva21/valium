@@ -35,6 +35,7 @@ ALLOWED_HOSTS = [
 if os.environ.get('ENV') == "prod":
     ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
     SESSION_COOKIE_DOMAIN = ".valiumonline.live"
+    CSRF_COOKIE_DOMAIN = ".valiumonline.live"
 
 # Application definition
 
@@ -194,4 +195,4 @@ CSRF_TRUSTED_ORIGINS = [
     "https://*.valiumonline.live"
 ]
 
-CSRF_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = True
