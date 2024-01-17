@@ -55,8 +55,6 @@ INSTALLED_APPS = [
     'rest_framework',
 ]
 
-CSRF_TRUSTED_ORIGINS = [os.environ.get('BASE_URL_FRONTEND')]
-
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -190,3 +188,8 @@ CORS_ALLOW_HEADERS = (
     'content-type',
     'x-csrftoken'
 )
+
+CSRF_TRUSTED_ORIGINS = [
+    os.environ.get('BASE_URL_FRONTEND'),
+    "https://*.valiumonline.live"
+]
