@@ -18,6 +18,13 @@ def get_user(request):
 
     return Response(user)
 
+@api_view(['GET'])
+@login_required
+def get_users_emails(request):
+    users = backend.get_users()
+
+    return Response(users)
+
 @api_view(['POST'])
 @login_required
 def new_user(request):

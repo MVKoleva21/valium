@@ -26,17 +26,6 @@ SECRET_KEY = 'django-insecure-tum2n0^ylzozw1q308^&lq@7za5$t2-gg9oc9yso0qt&o$f*yh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    "localhost",
-    "valium-backend.azurewebsites.net",
-    "api.valiumonline.live"
-]
-
-if os.environ.get('ENV') == "prod":
-    ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
-    SESSION_COOKIE_DOMAIN = ".valiumonline.live"
-    CSRF_COOKIE_DOMAIN = ".valiumonline.live"
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -54,6 +43,7 @@ INSTALLED_APPS = [
     'notifications',
     'inbox',
     'rest_framework',
+    'wills'
 ]
 
 MIDDLEWARE = [
@@ -196,3 +186,15 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 CSRF_COOKIE_SECURE = True
+
+
+ALLOWED_HOSTS = [
+    "localhost",
+    "valium-backend.azurewebsites.net",
+    "api.valiumonline.live"
+]
+
+if os.environ.get('ENV') == "prod":
+    ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
+    SESSION_COOKIE_DOMAIN = ".valiumonline.live"
+    CSRF_COOKIE_DOMAIN = ".valiumonline.live"

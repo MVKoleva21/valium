@@ -24,3 +24,13 @@ def add_user(data, email):
         wallet=new_wallet)
 
     return new_user
+
+def get_users():
+    users = User.objects.values_list('email')
+    user_emails = []
+
+    for i in users:
+        for j in i:
+            user_emails.append(j)
+
+    return user_emails

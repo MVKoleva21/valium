@@ -22,4 +22,5 @@ urlpatterns = [
     path('api/v1/users/', include("users.urls")),
     path('api/v1/notifications/', include('notifications.urls')),
     path('api/v1/inbox/', include('inbox.urls')),
+    path('api/v1/wills/', include('wills.urls')),
 ]
