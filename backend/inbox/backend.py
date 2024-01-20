@@ -9,4 +9,4 @@ def get_inbox(user_id, id=0):
     if id != 0:
         return InboxEntry.objects.get(pk=id, user=user)
 
-    return InboxEntry.objects.get(user=user)
+    return InboxEntry.objects.filter(user=user)

@@ -22,7 +22,7 @@ export default function App() {
     { path: '/wallet', element: <Protected> <Wallet /> </Protected>},
     { path: '/will', element: <Protected> <Will /> </Protected>},
     { path: '/account', element: <Protected> <Account /> </Protected>},
-    { path: '/connections', element: <Protected> <Connections /> </Protected> }
+    { path: '/wills/active', element: <Protected> <Connections /> </Protected> }
   ])
 
   return (

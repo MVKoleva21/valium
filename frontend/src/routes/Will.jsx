@@ -71,8 +71,8 @@ export default function Will() {
             headers: {
                 "X-CSRFToken": Cookies.get('csrftoken')
             }
-        }).then((res) => {
-            console.log(res.data)
+        }).then(() => {
+            window.location.reload()
         })
     }
 

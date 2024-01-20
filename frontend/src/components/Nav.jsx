@@ -35,7 +35,7 @@ export default function Nav() {
 
                     <NavEntry title="Profile" icon={profileIcon} isSelected={false} click={() => setIsNavShowen(prev => !prev)}/>
                     <div className={`flex flex-col max-lg:absolute max-lg:top-[80px] max-lg:left-0 ${!isNavShown? 'max-lg:hidden': ''} max-lg:bg-black max-lg:w-full max-lg:justify-center max-lg:items-center`}>
-                        <NavSubEntry title="Connections" click={() => navigator("/connections")} isSelected={window.location.pathname === "/connections"} />
+                        <NavSubEntry title="Active Wills" click={() => navigator("/wills/active")} isSelected={window.location.pathname === "/wills/active"} />
                         <NavSubEntry title="Account" click={() => navigator("/account")} isSelected={window.location.pathname === "/account"} />
                     </div>
 

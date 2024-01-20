@@ -2,8 +2,55 @@ from django.shortcuts import get_object_or_404
 from users.models import User
 from wallets.models import Wallet
 from .models import Will
+from inbox.models import InboxEntry
 from django.forms.models import model_to_dict
-from datetime import date
+from datetime import datetime
+from celery import Celery, shared_task
+from celery.schedules import crontab
+from celery import Celery
+from celery.schedules import crontab
+
+app = Celery("wills-check")
+
+app.conf.beat_schedule = {
+    "date_check": {
+        "task": "wills-check.date_check",
+        "schedule": crontab(hour=0, minute=0),
+    },
+}
+
+@app.task
+def date_check():
+    wills_to_check = Will.objects.all()
+
+    for i in wills_to_check:
+        if i.active:
+            if i.transferData == datetime.now().strftime("%Y-%m-%d"):
+                owner = User.objects.get(pk=i.owner_id)
+                inheritor = User.objects.get(pk=i.inheritor_id)
+
+                owner.wallet.bgn -= float(will.amounts.bgn)
+                owner.wallet.eur -= float(will.amounts.eur)
+                owner.wallet.btc -= float(will.amounts.btc)
+                owner.wallet.etc -= float(will.amounts.etc)
+
+                owner.wallet.save()
+
+                inheritor.wallet.bgn += float(will.amounts.bgn)
+                inheritor.wallet.eur += float(will.amounts.eur)
+                inheritor.wallet.btc += float(will.amounts.btc)
+                inheritor.wallet.etc += float(will.amounts.etc)
+
+                inheritor.wallet.save()
+
+                will.active = False
+
+                will.save()
+
+                InboxEntry.objects.create(
+                        user=inheritor,
+                        message=i.message
+                    )
 
 def update_will(data, user, id):
     try:
@@ -53,6 +100,11 @@ def update_will(data, user, id):
         will.active = False
 
         will.save()
+
+        InboxEntry.objects.create(
+                user=inheritor,
+                message=will.message
+            )
 
     return will
 
@@ -108,6 +160,11 @@ def add_new_will(data, user):
 
         will.save()
 
+        InboxEntry.objects.create(
+                user=inheritor,
+                message=will.message
+            )
+
     return will
 
 def get_wills(user):
@@ -127,3 +184,4 @@ def delete_will(user, id):
     will = Will.objects.get(owner=user, pk=id) 
 
     return will
+
