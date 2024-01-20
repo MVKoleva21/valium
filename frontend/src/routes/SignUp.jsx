@@ -45,7 +45,7 @@ export default function SignUp() {
 
     return (
         <> 
-            <div className="w-screen h-screen text-white flex relative max-lg:flex-col overflow-x-hidden">
+            <div className="w-screen h-screen text-white flex relative max-lg:flex-col">
                 <img src="/green.png" className="fixed left-[25%] select-none" draggable={false} alt="" />
                 <img src="/purple.png" className="fixed right-0 bottom-0 select-none" draggable={false} alt="" />
 
@@ -82,7 +82,7 @@ export default function SignUp() {
                 </div> 
 
                 <div className="w-3/5 h-full flex justify-center items-center bg-[#1F0032] max-lg:w-full py-8">
-                    <div className="flex items-center justify-center flex-col w-[450px] gap-4">
+                    <div className="flex items-center justify-center flex-col z-10 w-[450px] gap-4">
                         <div className="flex items-left justify-center flex-col w-full">
                             <h1 className="text-[80px] font-bold whitespace-nowrap">Welcome to</h1>
                             <h1 className="text-[80px] font-bold">Valium</h1>

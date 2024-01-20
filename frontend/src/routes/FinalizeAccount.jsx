@@ -8,28 +8,8 @@ export default function FinilizeAccout() {
     let [lname, setLname] = useState("")
     let [uname, setUname] = useState("")
     let [pin, setPin] = useState("")
-    let [gender, setGender] = useState("")
+    let [gender, setGender] = useState("Male")
     let navigator = useNavigate()
-
-    const fnameHandle = (e) => {
-        setFname(e.target.value)
-    }
-
-    const lnameHandle = (e) => {
-        setLname(e.target.value)
-    }
-
-    const unameHandle = (e) => {
-        setUname(e.target.value)
-    }
-
-    const pinHandle = (e) => {
-        setPin(e.target.value)
-    }
-
-    const genderHandle = (e) => {
-        setGender(() => e.target.value)
-    }
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -47,55 +27,54 @@ export default function FinilizeAccout() {
             headers: {
                 "X-CSRFToken": Cookies.get('csrftoken')
             }
-        }).then((res) => {
+        }).then(() => {
             navigator("/wills")
         })
     }
 
     return (
         <>
-            <div className="w-screen h-screen flex justify-center items-center bg-[#030016] text-white relative"> 
-                <img src="/finalize.png" className="fixed right-0 select-none" draggable={false} alt="" />
+            <div className="w-screen min-h-screen flex justify-center items-center bg-[#030016] text-white relative"> 
+                <img src="/finalize.png" className="fixed right-0 top-0 select-none" draggable={false} alt="" />
                 <img src="/finalize3.png" className="fixed right-0 bottom-0 select-none" draggable={false} alt="" />
                 <img src="/finalize2.png" className="fixed left-[25%] bottom-0 select-none" draggable={false} alt="" />
 
                 <div className="p-4">
-                    <h1 className="font-bold text-4xl">Finish profile set up</h1>
+                    <h1 className="font-bold max-lg:text-center text-4xl">Finish profile set up</h1>
                     
-                    <form method="post" className="flex flex-col gap-4 bg-[#1C1C1C60] p-8 py-14 mt-16 rounded-2xl" onSubmit={handleSubmit}>
-                        <div className="flex gap-8">
-
+                    <form method="post" className="flex z-10 relative flex-col gap-4 bg-[#1C1C1C60] p-8 py-14 my-16 rounded-2xl" onSubmit={handleSubmit}>
+                        <div className="flex gap-8 max-lg:flex-col max-lg:gap-4">
                             <div className="flex flex-col gap-1 z-10">
                                 <label htmlFor="fname">First Name</label>
-                                <input type="text" name="fname" className="p-3 rounded-lg bg-[#ffffff05] border-2 border-[#ffffff10]" onChange={fnameHandle}/>
+                                <input onChange={(e) => setFname(e.target.value)} type="text" name="fname" className="p-3 rounded-lg bg-[#ffffff05] border-2 border-[#ffffff10]"/>
                             </div>
 
                             <div className="flex flex-col gap-1 z-10">
                                 <label htmlFor="lname">Last Name</label>
-                                <input type="text" name="lname" className="p-3 rounded-lg bg-[#ffffff05] border-2 border-[#ffffff10]" onChange={lnameHandle}/>
+                                <input onChange={(e) => setLname(e.target.value)} type="text" name="lname" className="p-3 rounded-lg bg-[#ffffff05] border-2 border-[#ffffff10]"/>
                             </div>
                         </div>
 
                         <div className="flex flex-col gap-1 z-10">
                             <label htmlFor="uname">Username</label>
-                            <input type="text" name="uname" className="p-3 rounded-lg bg-[#ffffff05] border-2 border-[#ffffff10]" onChange={unameHandle}/>
+                            <input onChange={(e) => setUname(e.target.value)} type="text" name="uname" className="p-3 rounded-lg bg-[#ffffff05] border-2 border-[#ffffff10]"/>
                         </div>
                         
                         <div className="flex flex-col gap-1 z-10">
                             <label htmlFor="pin">PIN</label>
-                            <input type="text" name="pin" className="p-3 rounded-lg bg-[#ffffff05] border-2 border-[#ffffff10]" onChange={pinHandle}/>
+                            <input onChange={(e) => setPin(e.target.value)} type="text" name="pin" className="p-3 rounded-lg bg-[#ffffff05] border-2 border-[#ffffff10]"/>
                         </div>
 
                         <div className="flex flex-col gap-1 z-10">
                             <label htmlFor="gender">Gender</label>
-                            <select name="gender" defaultValue={"male"} id="" className="p-3 rounded-lg bg-[#ffffff05] border-2 border-[#ffffff10]" onChange={genderHandle}>
+                            <select onChange={(e) => setGender(() => e.target.value)}  name="gender" defaultValue={"male"} id="" className="p-3 rounded-lg bg-[#ffffff05] border-2 border-[#ffffff10]">
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
                                 <option value="other">Other</option>
                             </select>
                         </div>
 
-                        <button type="submit" className="px-5 z-10 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-xl transition-transform transform-gpu hover:-translate-y-1 hover:shadow-md hover:shadow-[#ffffff7f]0">Save</button>
+                        <button type="submit" className="px-5 py-3 z-10 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-xl transition-transform transform-gpu hover:-translate-y-1 hover:shadow-md hover:shadow-[#ffffff7f]0">Save</button>
                     </form>
                 </div>
             </div>

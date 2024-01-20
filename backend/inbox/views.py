@@ -19,6 +19,6 @@ def get_inbox_entry(request, id):
 @api_view(["GET"])
 @login_required
 def get_inbox(request):
-    inbox = backend.get_inbox(request.user.id)
+    inbox = backend.get_inbox(request.user.id, 0)
 
     return Response(list(inbox.values()))

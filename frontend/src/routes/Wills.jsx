@@ -7,12 +7,12 @@ export default function Wills() {
         <>
             <img src="/Eclipse.png" className="absolute left-[30%] top-0 select-none" draggable={false} alt="" />
 
-            <div className="flex flex-col items-center text-center justify-center w-screen h-screen bg-[#0B0B0F] text-white z-10">
-                <div className="text-5xl font-black mb-4 z-10">My digital will</div>
+            <div className="flex flex-col items-center text-center justify-center w-screen min-h-screen py-12 bg-[#0B0B0F] text-white z-10">
+                <h1 className="text-5xl font-black mb-4 z-10">My digital will</h1>
                 
                     <p className="text-base font-normal mb-24 z-10">Choose between the three types of will, or more than one</p>
 
-                    <div className="flex space-x-16">
+                    <div className="flex gap-16 max-lg:flex-col">
 
                         <div onClick={() => navigation('/will')} className="relative inline-flex group">
                             <div className="absolute max-w-xs cursor-pointer transitiona-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#e2c4ff] via-[#ffffff] to-[#e2c4ff] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt"></div>
@@ -49,5 +49,5 @@ export default function Wills() {
                 </div>
             </div>
         </>
-    );
+    )
 }

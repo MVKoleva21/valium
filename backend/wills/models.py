@@ -9,7 +9,7 @@ class Will(models.Model):
     inheritor = models.ForeignKey(User, on_delete=models.CASCADE)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owner')      
     active = models.BooleanField(default=True)
-    transferDate = models.DateTimeField(null=True)
+    transferDate = models.DateField(null=True)
     effectiveImmediate = models.BooleanField(default=False, null=True)
 
     class Meta:

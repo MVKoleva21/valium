@@ -1,107 +1,131 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
 import Nav from "../components/Nav"
-
+import Cookies from "js-cookie"
 
 export default function Will() {
     let [user, setUser] = useState({})
-    let [amountMoneyBgn, setAmountMoneyBgn] = useState(0)
-    let [amountMoneyEur, setAmountMoneyEur] = useState(0)
-    let [amountCryptoBtc, setAmountCryptoBtc] = useState(0)
-    let [amountCryptoEtc, setAmountCryptoEtc] = useState(0)
-    let [email, setEmail] = useState('')
-    let [message, setMessage] = useState('')
+    let [userEmails, setUserEmails] = useState([])
+    let [usersMatchingEmails, setUsersMatchingEmails] = useState([])
+    let [showEmailGuide, setShowEmailGuide] = useState(true)
+
+
+    let [inheritorEmail, setInheritorEmail] = useState("")
+    let [effectiveImmediate, setEffectiveImmediate] = useState(false)
+    let [dateToTransfer, setDateToTransfer] = useState(new Date().toISOString().split('T')[0])
+    let [message, setMessage] = useState("")
+    let [bgnToTransfer, setBgnToTransfer] = useState(0.0)
+    let [eurToTransfer, setEurToTransfer] = useState(0.0)
+    let [btcToTransfer, setBtcToTransfer] = useState(0.0)
+    let [etcToTransfer, setEtcToTransfer] = useState(0.0)
 
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_BASE_URL_BACKEND}/api/v1/users/current`, {withCredentials: true}).then((res) => {
             setUser(res.data)
         })
+
+        axios.get(`${import.meta.env.VITE_BASE_URL_BACKEND}/api/v1/users/get`, {withCredentials: true}).then((res) => {
+            setUserEmails(res.data)
+        })
     }, [])
 
-    const handleValueChangeBgn = (e) => {
-        setAmountMoneyBgn(() => e.target.value)
-    }
+    useEffect(() => {
+        for(let j = 0; j < userEmails.length; j++) {
+            if(userEmails[j].includes(inheritorEmail)) {
+                if(!usersMatchingEmails.includes(userEmails[j]) && usersMatchingEmails.length <= 5) {
+                    setUsersMatchingEmails((prev) => [userEmails[j], ...prev])
+                }
+            }
+        }
 
-    const handleValueChangeEur = (e) => {
-        setAmountMoneyEur(() => e.target.value)
-    }
+        for(let j = 0; j < usersMatchingEmails.length; j++) {
+            if(!usersMatchingEmails[j].includes(inheritorEmail)) {
+                setUsersMatchingEmails((prev) => prev.splice(j, 1))
+            }
+        }
 
-    const handleValueChangeBtc = (e) => {
-        setAmountCryptoBtc(() => e.target.value)
-    }
+        if(inheritorEmail == '') {
+            setUsersMatchingEmails([])
+        }
 
-    const handleValueChangeEtc = (e) => {
-        setAmountCryptoEtc(() => e.target.value)
-    }
+    }, [inheritorEmail])
 
-    const handleGetEmail = (e) => {
-        setEmail(() => e.target.value)
-    }
+    const handleSumbition = (e) => {
+        e.preventDefault()        
 
-    const handleGetMessage = (e) => {
-        setMessage(() => e.target.value)
-    }
-
-    const handleBequeath = () => {
-        const data = [{
-            user: email,
+        const data = {
+            message: message,
             amount: {
-                bgn: amountMoneyBgn,
-                eur: amountMoneyEur,
-                btc: amountCryptoBtc,
-                etc: amountCryptoEtc
+                bgn: bgnToTransfer,
+                eur: eurToTransfer,
+                btc: btcToTransfer,
+                etc: etcToTransfer
             },
-            message: message
-        }]
+            transferDate: dateToTransfer,
+            transferTo: inheritorEmail,
+            effectiveImmediate: effectiveImmediate
+        }
 
-        axios.post(`${import.meta.env.VITE_BASE_URL_BACKEND}/api/v1/users/add/recieve/`, data, {withCredentials: true}).then((res) => {
-            window.location.reload()
+        axios.post(`${import.meta.env.VITE_BASE_URL_BACKEND}/api/v1/wills/new/`, data, { 
+            withCredentials: true,
+            headers: {
+                "X-CSRFToken": Cookies.get('csrftoken')
+            }
+        }).then((res) => {
+            console.log(res.data)
         })
     }
 
     return (
         <> 
-            <img src="/finalize3.png" className="absolute right-0 bottom-0 select-none" draggable={false} alt="" />
-            <img src="/finalize2.png" className="absolute left-[25%] bottom-0 select-none" draggable={false} alt="" />
-            <img src="/Eclipse.png" className="absolute left-[25%] top-0 select-none" draggable={false} alt="" />
+            <img src="/finalize3.png" className="fixed right-0 bottom-0 select-none" draggable={false} alt="" />
+            <img src="/finalize2.png" className="fixed left-[25%] bottom-0 select-none" draggable={false} alt="" />
+            <img src="/Eclipse.png" className="fixed left-[25%] top-0 select-none" draggable={false} alt="" />
 
-            <div className="h-screen w-screen flex text-white">
+            <div className="w-full flex text-white">
                 <Nav />
 
-                <div className="w-full h-full bg-[#030016] flex flex-col">
-                    <h1 className="z-10 text-6xl mt-[60px] ml-[80px] font-bold">Will</h1>
+                <div className="w-full min-h-screen bg-[#030016] flex flex-col max-lg:mt-[80px]">
+                    <h1 className="z-10 text-6xl mt-[60px] ml-[80px] font-bold">Will</h1> 
 
-                    <div className="w-full h-full flex-grow flex-col items-center z-10 justify-center">
-                        <div className="w-[90%] h-full flex gap-10 justify-center items-center">
-                            <div className="w-[90%] py-3 rounded-[16px] bg-[#1C1C1C60] h-[80%]">
-                                <div>
-                                    <div className="flex justify-center items-start mt-8 h-full">
-                                        <div className="z-10 w-[80%] gap-8 flex flex-col">
-                                            <h1 className="ml-[60px] font-bold text-3xl">Transfer Money</h1>
-                                            <p className="z-10 ml-[80px] text-[#c3c3c3]">Transfer money to bequeath to your beloved ones.</p>
-                                            <input className="w-full z-10 bg-[#ffffff05] rounded-[10px] p-4" placeholder="BGN to transfer" onChange={handleValueChangeBgn} type="number" />                                    
-                                            <input className="w-full z-10 bg-[#ffffff05] rounded-[10px] p-4" placeholder="EUR to transfer" onChange={handleValueChangeEur} type="number" />                                    
-                                            <input className="w-full z-10 bg-[#ffffff05] rounded-[10px] p-4" placeholder="BTC to transfer" onChange={handleValueChangeBtc} type="number" />                                    
-                                            <input className="w-full z-10 bg-[#ffffff05] rounded-[10px] p-4" placeholder="ETC to transfer" onChange={handleValueChangeEtc} type="number" />                                    
-
+                    <div className="w-full h-full flex justify-center items-center">
+                        <form onSubmit={handleSumbition} className="w-[85%] my-10  bg-[#1C1C1C60] z-10 rounded-[16px] p-12 flex flex-col justify-center items-center gap-10">
+                            <div className="flex justify-center items-start gap-10 w-full max-lg:flex-col">
+                                <div className="flex justify-center gap-5 items-center w-full flex-col">
+                                    <div className="relative w-full">
+                                        <input type="email" onChange={(e) => {setShowEmailGuide(true); setInheritorEmail(e.target.value)}} value={inheritorEmail} placeholder="Bequeath: Enter email" className="w-full z-10 bg-[#ffffff10] rounded-[10px] p-4"/>
+                                        {
+                                            showEmailGuide && <div className="absolute w-full rounded-xl overflow-hidden">
+                                            {
+                                                usersMatchingEmails.map((el, index) => {
+                                                    return <h1 key={index} onClick={() => {setInheritorEmail(el); setShowEmailGuide(false)}} className="p-4 bg-[#ffffff10] duration-75 hover:bg-[#ffffff15] select-none cursor-pointer z-20 relative w-full">{el}</h1>
+                                                })
+                                            }
                                         </div>
-
-                                        <div className="flex flex-col gap-8 z-10 w-[80%]">
-                                            <h1 className="z-10 text-4xl ml-[80px] font-bold">Leave A Message</h1>
-                                            <p className="z-10 ml-[80px] text-[#c3c3c3]">Upload message to bequeath to your beloved ones.</p>
-
-                                            <div className="flex items-center w-full flex-col">
-                                                <div className="flex flex-col w-[90%] gap-6">
-                                                    <input className="w-full z-10 bg-[#ffffff05] rounded-[10px] p-4" placeholder="Bequeath: enter email" onChange={handleGetEmail} type="email" />                                    
-                                                    <textarea name="" id="" cols="30" onChange={handleGetMessage} className="w-full resize-none z-10 bg-[#ffffff05] rounded-[10px] mb-6" placeholder="Leave message..." rows="10"></textarea> 
-                                                </div>
-                                            </div>
-                                        </div>
+                                        }
                                     </div>
-                                        <button onClick={handleBequeath} className="w-[36%] flex justify-center mx-auto px-24 py-2 z-10 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-xl hover:-translate-y-1 hover:shadow-md hover:shadow-[#ffffff7f]">Bequeath</button>
+
+                                    <textarea onChange={(e) => {setMessage(e.target.value)}} cols="45" className="w-full resize-none p-4 z-10 bg-[#ffffff10] rounded-[10px] mb-6" placeholder="Leave message..." rows="15"></textarea>
                                 </div>
-                            </div>
-                        </div>
+                                <div className="gap-5 flex flex-col w-full">
+                                    <input onChange={(e) => {setBgnToTransfer(e.target.value)}} className="w-full z-10 bg-[#ffffff10] rounded-[10px] p-4" placeholder="BGN to transfer" type="number" />                                    
+                                    <input onChange={(e) => {setEurToTransfer(e.target.value)}} className="w-full z-10 bg-[#ffffff10] rounded-[10px] p-4" placeholder="EUR to transfer" type="number" />                                    
+                                    <input onChange={(e) => {setBtcToTransfer(e.target.value)}} className="w-full z-10 bg-[#ffffff10] rounded-[10px] p-4" placeholder="BTC to transfer" type="number" />                                    
+                                    <input onChange={(e) => {setEtcToTransfer(e.target.value)}} className="w-full z-10 bg-[#ffffff10] rounded-[10px] p-4" placeholder="ETC to transfer" type="number" /> 
+                                    
+                                    <div className="flex gap-5">
+                                        <label htmlFor="effective Immediate">Effective Immediate</label>
+                                        <input defaultValue={false} onClick={() => {setEffectiveImmediate((prev) => !prev)}} type="checkbox" name="effective-immediate" />
+                                    </div>
+
+                                    {!effectiveImmediate && <div className="flex gap-5 flex-col">
+                                        <label htmlFor="date">Enter transfer date</label>
+                                        <input onChange={(e) => {setDateToTransfer(e.target.value)}} type="date" className="w-full z-10 bg-[#ffffff10] rounded-[10px] p-4" name="date"/>
+                                    </div>}
+                                </div>
+                            </div> 
+                            <button type="submit" className="w-[36%] duration-75 flex justify-center mx-auto px-24 py-2 z-10 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-xl hover:-translate-y-1 hover:shadow-md hover:shadow-[#ffffff7f]">Sumbit Will</button>
+                        </form> 
                     </div>
                 </div>
             </div>

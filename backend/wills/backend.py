@@ -14,39 +14,39 @@ def update_will(data, user, id):
 
     owner = User.objects.get(pk=user.id)
 
-    if not (owner.wallet.bgn >= data["amount"]["bgn"] and 
-            owner.wallet.eur >= data["amount"]["eur"] and
-            owner.wallet.btc >= data["amount"]["btc"] and
-            owner.wallet.etc >= data["amount"]["etc"]
+    if not (owner.wallet.bgn >= float(data["amount"]["bgn"]) and 
+            owner.wallet.eur >= float(data["amount"]["eur"]) and
+            owner.wallet.btc >= float(data["amount"]["btc"]) and
+            owner.wallet.etc >= float(data["amount"]["etc"])
             ):
         raise Exception("User does not have enough balance")
 
 
     will = Will.objects.get(owner=owner, pk=id) 
 
-    will.amounts.bgn = data["amount"]["bgn"]
-    will.amounts.eur = data["amount"]["eur"]
-    will.amounts.btc = data["amount"]["btc"]
-    will.amounts.etc = data["amount"]["etc"]
+    will.amounts.bgn = float(data["amount"]["bgn"])
+    will.amounts.eur = float(data["amount"]["eur"])
+    will.amounts.btc = float(data["amount"]["btc"])
+    will.amounts.etc = float(data["amount"]["etc"])
 
     will.message = data["message"]
-    will.transferDate = data["transferDate"]
+    will.transferDate = str(data["transferDate"])
     will.effectiveImmediate = data["effectiveImmediate"]
 
     will.save()
 
     if data["effectiveImmediate"]:
-        owner.wallet.bgn -= will.amounts.bgn
-        owner.wallet.eur -= will.amounts.eur
-        owner.wallet.btc -= will.amounts.btc
-        owner.wallet.etc -= will.amounts.etc
+        owner.wallet.bgn -= float(will.amounts.bgn)
+        owner.wallet.eur -= float(will.amounts.eur)
+        owner.wallet.btc -= float(will.amounts.btc)
+        owner.wallet.etc -= float(will.amounts.etc)
 
         owner.wallet.save()
 
-        inheritor.wallet.bgn += will.amounts.bgn
-        inheritor.wallet.eur += will.amounts.eur
-        inheritor.wallet.btc += will.amounts.btc
-        inheritor.wallet.etc += will.amounts.etc
+        inheritor.wallet.bgn += float(will.amounts.bgn)
+        inheritor.wallet.eur += float(will.amounts.eur)
+        inheritor.wallet.btc += float(will.amounts.btc)
+        inheritor.wallet.etc += float(will.amounts.etc)
 
         inheritor.wallet.save()
 
@@ -65,10 +65,10 @@ def add_new_will(data, user):
 
     owner = User.objects.get(pk=user.id)
 
-    if not (owner.wallet.bgn >= data["amount"]["bgn"] and 
-            owner.wallet.eur >= data["amount"]["eur"] and
-            owner.wallet.btc >= data["amount"]["btc"] and
-            owner.wallet.etc >= data["amount"]["etc"]
+    if not (owner.wallet.bgn >= float(data["amount"]["bgn"]) and 
+            owner.wallet.eur >= float(data["amount"]["eur"]) and
+            owner.wallet.btc >= float(data["amount"]["btc"]) and
+            owner.wallet.etc >= float(data["amount"]["etc"])
             ):
         raise Exception("User does not have enough balance")
 
@@ -84,23 +84,23 @@ def add_new_will(data, user):
             message=data["message"],
             amounts=wallet,
             inheritor=inheritor, 
-            transferDate=data["transferDate"],
+            transferDate=str(data["transferDate"]),
             owner=owner,
             effectiveImmediate=data["effectiveImmediate"]
         )
 
     if data["effectiveImmediate"]:
-        owner.wallet.bgn -= will.amounts.bgn
-        owner.wallet.eur -= will.amounts.eur
-        owner.wallet.btc -= will.amounts.btc
-        owner.wallet.etc -= will.amounts.etc
+        owner.wallet.bgn -= float(will.amounts.bgn)
+        owner.wallet.eur -= float(will.amounts.eur)
+        owner.wallet.btc -= float(will.amounts.btc)
+        owner.wallet.etc -= float(will.amounts.etc)
 
         owner.wallet.save()
 
-        inheritor.wallet.bgn += will.amounts.bgn
-        inheritor.wallet.eur += will.amounts.eur
-        inheritor.wallet.btc += will.amounts.btc
-        inheritor.wallet.etc += will.amounts.etc
+        inheritor.wallet.bgn += float(will.amounts.bgn)
+        inheritor.wallet.eur += float(will.amounts.eur)
+        inheritor.wallet.btc += float(will.amounts.btc)
+        inheritor.wallet.etc += float(will.amounts.etc)
 
         inheritor.wallet.save()
 

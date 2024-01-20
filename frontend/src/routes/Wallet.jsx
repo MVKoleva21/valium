@@ -37,14 +37,14 @@ export default function Wallet() {
 
     return (
         <> 
-            <img src="/finalize3.png" className="absolute right-0 bottom-0 select-none" draggable={false} alt="" />
-            <img src="/finalize2.png" className="absolute left-[25%] bottom-0 select-none" draggable={false} alt="" />
-            <img src="/Eclipse.png" className="absolute left-[25%] top-0 select-none" draggable={false} alt="" />
+            <div className="min-h-screen w-screen flex text-white">
+                <img src="/finalize3.png" className="fixed right-0 bottom-0 select-none" draggable={false} alt="" />
+                <img src="/finalize2.png" className="fixed left-[25%] bottom-0 select-none" draggable={false} alt="" />
+                <img src="/Eclipse.png" className="fixed left-[25%] top-0 select-none" draggable={false} alt="" />
 
-            <div className="h-screen w-screen flex text-white">
                 <Nav />
 
-                <div className="w-full h-full bg-[#030016] flex flex-col">
+                <div className="w-full min-h-full bg-[#030016] flex flex-col max-lg:mt-[80px]">
                     <h1 className="z-10 text-6xl mt-[60px] ml-[80px] font-bold">Wallet</h1>
 
                     <div className="w-full h-full flex flex-col items-center justify-center">
@@ -53,7 +53,7 @@ export default function Wallet() {
                                <img src="/Cards.png" className="z-10" draggable={false} alt="" /> 
                             </div> 
                             
-                            <div className="w-2/5 h-[80%] bg-[#1C1C1C60] rounded-[16px] flex justify-center items-center z-10">
+                            <div className="w-full min-h-[80%] py-8 bg-[#1C1C1C60] rounded-[16px] flex justify-center items-center z-10">
                                 <div className="w-[80%] h-[80%]">
                                     <h1 className="text-4xl font-bold z-10">Balance</h1>
                                     

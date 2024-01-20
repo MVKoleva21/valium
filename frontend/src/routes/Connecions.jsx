@@ -10,7 +10,6 @@ export default function Connections() {
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_BASE_URL_BACKEND}/api/v1/users/current`, {withCredentials: true}).then((res) => {
             setUser(res.data)
-            setTransferTo(res.data.transfer_to)
         })
     }, [])
     
@@ -36,4 +35,4 @@ export default function Connections() {
              </div>
         </div>
   );
-};
+}

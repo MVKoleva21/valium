@@ -30,40 +30,40 @@ export default function Home() {
                     </div>
                 </div>
 
-                <div className='mt-[30vh] w-[800px] flex flex-col items-center justify-center'>
+                <div className='mt-[30vh] max-w-[800px] flex flex-col items-center justify-center'>
                     <div className='font-black text-6xl flex items-center justify-center flex-col'>
                         <h1 className='z-10 text-center text-6xl'>A digital will platform that ensures your legacy</h1>
                     </div>
-                    <div className='w-[500px] mt-8 text-center flex flex-col gap-10 text-[#898CA9] text-2xl'>
+                    <div className='max-w-[500px] mt-8 text-center flex flex-col gap-10 text-[#898CA9] text-2xl'>
                         <p className='z-10'>Welcome to the new modern will - digital will.</p>
                         <p className='z-10'>Unlock a new world with our digital will site and give a try to the latest discovery in the field of wills.</p>
                         <p className='z-10'>Step into the future of testamentary preparation with confidence, convenience, and peace of mind.</p> 
                     </div>
                 </div>
 
-                <div className='flex flex-col w-screen items-end mt-[100vh] pr-[90px]'>
-                    <div className='w-[900px] flex flex-col gap-10'>
-                        <h1 className='text-right font-black z-10 text-6xl'>Connect with your loved ones and start exploring</h1>
+                <div className='flex flex-col w-screen items-end mt-[100vh] pr-[90px] max-lg:pr-[0px]'>
+                    <div className='max-w-[900px] flex flex-col gap-10'>
+                        <h1 className='text-right max-lg:text-center font-black z-10 text-6xl'>Connect with your loved ones and start exploring</h1>
                         
-                        <div className='flex flex-col text-[#898CA9] items-end text-2xl'>
-                            <p className='z-10'>Connect with your loved ones and start bequeathing </p>
-                            <p className='z-10'>your digital assets to them.</p>
+                        <div className='flex flex-col text-[#898CA9] items-end max-lg:items-center text-2xl'>
+                            <p className='z-10 max-lg:text-center'>Connect with your loved ones and start bequeathing </p>
+                            <p className='z-10 max-lg:text-center'>your digital assets to them.</p>
                         </div>
 
-                        <p className='text-[#898CA9] z-10 text-right text-2xl'>Our user-friendly interface makes the transition to a digital will effortless, providing you with a reliable and accessible solution for your estate planning needs.</p>
+                        <p className='text-[#898CA9] z-10 text-right max-lg:text-center text-2xl'>Our user-friendly interface makes the transition to a digital will effortless, providing you with a reliable and accessible solution for your estate planning needs.</p>
                     </div> 
                 </div>
 
-                <div className='flex flex-col w-screen items-start mt-[100vh] pl-[90px] mb-[350px]'>
-                    <div className='w-[900px] flex flex-col gap-10'>
-                        <h1 className='text-start z-10 font-black text-6xl'>Take your first step into digital will</h1>
+                <div className='flex flex-col w-screen items-start max-lg:items-center max-lg:pl-0  mt-[100vh] pl-[90px] mb-[350px]'>
+                    <div className='max-w-[900px] flex flex-col gap-10'>
+                        <h1 className='text-start max-lg:text-center z-10 font-black text-6xl'>Take your first step into digital will</h1>
                         
-                        <div className='flex flex-col text-[#898CA9] items-start text-2xl'>
-                            <p className='z-10'>Make your first step into the digital realm, our platform seamlessly guides you through the </p>
-                            <p className='z-10'>process of creating a comprehensive and secure digital will.</p>
+                        <div className='flex flex-col text-[#898CA9] max-lg:items-center items-start text-2xl'>
+                            <p className='z-10 max-lg:text-center'>Make your first step into the digital realm, our platform seamlessly guides you through the </p>
+                            <p className='z-10 max-lg:text-center'>process of creating a comprehensive and secure digital will.</p>
                         </div>
 
-                        <p className='text-[#898CA9] z-10 text-left text-2xl'>Experience the convenience of managing your estate online, ensuring your wishes are safeguarded.</p>
+                        <p className='text-[#898CA9] z-10 max-lg:text-center  text-left text-2xl'>Experience the convenience of managing your estate online, ensuring your wishes are safeguarded.</p>
                     </div> 
                 </div>
             </div>
