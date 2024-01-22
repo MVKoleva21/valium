@@ -10,7 +10,14 @@ import os
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from . import backend
+from rest_framework import status
+from drf_yasg.utils import swagger_auto_schema
 
+@swagger_auto_schema(
+    operation_description="Get current user",
+    responses={200: 'OK'},
+    method="GET",
+)
 @api_view(['GET'])
 @login_required
 def get_user(request):
@@ -18,6 +25,11 @@ def get_user(request):
 
     return Response(user)
 
+@swagger_auto_schema(
+    operation_description="Get users emails",
+    responses={200: 'OK'},
+    method="GET",
+)
 @api_view(['GET'])
 @login_required
 def get_users_emails(request):
@@ -25,6 +37,11 @@ def get_users_emails(request):
 
     return Response(users)
 
+@swagger_auto_schema(
+    operation_description="Create new user",
+    responses={201: 'Created'},
+    method="POST",
+)
 @api_view(['POST'])
 @login_required
 def new_user(request):
@@ -33,6 +50,11 @@ def new_user(request):
 
     return Response(model_to_dict(user))
 
+@swagger_auto_schema(
+    operation_description="Redirect users on successful login",
+    responses={200: 'OK'},
+    method="GET",
+)
 @api_view(['GET'])
 @login_required
 def redirect_successful(request):

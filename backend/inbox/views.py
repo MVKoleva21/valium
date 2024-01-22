@@ -7,8 +7,15 @@ from wallets.models import Wallet
 import json
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework import status
+from drf_yasg.utils import swagger_auto_schema
 from . import backend
 
+@swagger_auto_schema(
+    operation_description="Retrieve specific inbox entry",
+    responses={200: 'OK'},
+    method="GET",
+)
 @api_view(["GET"])
 @login_required
 def get_inbox_entry(request, id):    
@@ -16,6 +23,11 @@ def get_inbox_entry(request, id):
 
     return Response(model_to_dict(inbox_entry))
 
+@swagger_auto_schema(
+    operation_description="Retrieve all inbox entry",
+    responses={200: 'OK'},
+    method="GET",
+)
 @api_view(["GET"])
 @login_required
 def get_inbox(request):

@@ -7,7 +7,14 @@ import json
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from . import backend
+from rest_framework import status
+from drf_yasg.utils import swagger_auto_schema
 
+@swagger_auto_schema(
+    operation_description="Update notification to read",
+    responses={200: 'OK'},
+    method="PUT",
+)
 @api_view(['PUT'])
 @login_required
 def read_notification(request, id):
@@ -15,6 +22,11 @@ def read_notification(request, id):
 
     return Response(model_to_dict(notification))
 
+@swagger_auto_schema(
+    operation_description="Create new notification",
+    responses={201: 'Created'},
+    method="POST",
+)
 @api_view(['POST'])
 @login_required
 def add_notification(request):
@@ -23,6 +35,11 @@ def add_notification(request):
 
     return Response(model_to_dict(notification))
 
+@swagger_auto_schema(
+    operation_description="Get all notifications",
+    responses={200: 'OK'},
+    method="GET",
+)
 @api_view(['GET'])
 @login_required
 def get_notifications(request):
@@ -30,6 +47,11 @@ def get_notifications(request):
 
     return Response(list(notifications.values()))
 
+@swagger_auto_schema(
+    operation_description="Get only unread notifications",
+    responses={200: 'OK'},
+    method="GET",
+)
 @api_view(['GET'])
 @login_required
 def get_notifications_unread(request):

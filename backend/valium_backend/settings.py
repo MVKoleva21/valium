@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'django_crontab',
+    'drf_yasg',
     'users',
     'wallets',
     'notifications',
@@ -198,3 +200,4 @@ if os.environ.get('ENV') == "prod":
     ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
     SESSION_COOKIE_DOMAIN = ".valiumonline.live"
     CSRF_COOKIE_DOMAIN = ".valiumonline.live"
+    DEBUG = False
