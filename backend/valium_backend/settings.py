@@ -201,3 +201,5 @@ if os.environ.get('ENV') == "prod":
     SESSION_COOKIE_DOMAIN = ".valiumonline.live"
     CSRF_COOKIE_DOMAIN = ".valiumonline.live"
     DEBUG = False
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
