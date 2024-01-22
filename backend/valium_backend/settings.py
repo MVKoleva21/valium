@@ -200,6 +200,6 @@ if os.environ.get('ENV') == "prod":
     ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
     SESSION_COOKIE_DOMAIN = ".valiumonline.live"
     CSRF_COOKIE_DOMAIN = ".valiumonline.live"
-    DEBUG = False
+DEBUG = False
 
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = BASE_DIR / "static"
