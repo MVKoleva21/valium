@@ -19,9 +19,8 @@ export default function SignIn() {
         e.preventDefault()
 
         const data = {
-            login: userName,
+            email: userName,
             password: password, 
-            remember: false
         }
 
         axios.post(`${import.meta.env.VITE_BASE_URL_BACKEND}/api/v1/auth/login/`, data, { withCredentials: true }).then((res) => {

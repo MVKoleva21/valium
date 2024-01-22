@@ -20,14 +20,13 @@ export default function SignUp() {
     }
 
     const onSubmit = (e) => {
-        e.preventDefault()
-
         const data = {
-            login: userName,
-            password: password, 
-            confirmPassword: confirmPassword,
-            remember: false
+            email: userName,
+            password1: password, 
+            password2: confirmPassword,
         }
+
+        axios.get(`${import.meta.env.VITE_BASE_URL_BACKEND}/api/v1/auth/signup/`, { withCredentials: true})
 
         axios.post(`${import.meta.env.VITE_BASE_URL_BACKEND}/api/v1/auth/signup/`, data, { 
             withCredentials: true,
@@ -37,6 +36,8 @@ export default function SignUp() {
         }).then((res) => {
             console.log(res)
         })
+
+        e.preventDefault()
     }
 
     const onSubmitGoogle = () => {
@@ -57,7 +58,7 @@ export default function SignUp() {
                         </div>
 
                         <div className="mt-12">
-                            <form onSubmit={onSubmit} method="post" className="flex flex-col gap-5">
+                            <form onSubmit={onSubmit} className="flex flex-col gap-5">
                                 <div className="relative after:content-[''] after:w-full after:absolute after:bg-[#333] after:h-[1px] after:bottom-0 after:left-0">
                                     <input onChange={userNameHandler} type="email" placeholder="Email" className="p-2 bg-transparent"/>
                                 </div>
