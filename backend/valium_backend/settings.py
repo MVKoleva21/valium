@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'allauth.account',
     'allauth',
@@ -49,8 +50,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -200,6 +202,15 @@ if os.environ.get('ENV') == "prod":
     ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
     SESSION_COOKIE_DOMAIN = ".valiumonline.live"
     CSRF_COOKIE_DOMAIN = ".valiumonline.live"
-DEBUG = False
+    DEBUG = False
 
-STATIC_ROOT = BASE_DIR / "static"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    }
+}
+
+STATIC_HOST = os.environ.get("VITE_BASE_URL_BACKEND")
+STATIC_URL = str(STATIC_HOST) + "/static/"
