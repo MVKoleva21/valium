@@ -9,6 +9,7 @@ from celery import Celery, shared_task
 from celery.schedules import crontab
 from celery import Celery
 from celery.schedules import crontab
+import uuid
 
 app = Celery("wills-check")
 
@@ -138,7 +139,8 @@ def add_new_will(data, user):
             inheritor=inheritor, 
             transferDate=str(data["transferDate"]),
             owner=owner,
-            effectiveImmediate=data["effectiveImmediate"]
+            effectiveImmediate=data["effectiveImmediate"],
+            willNumber=uuid.uuid1()
         )
 
     if data["effectiveImmediate"]:

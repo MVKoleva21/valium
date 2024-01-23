@@ -11,6 +11,7 @@ class Will(models.Model):
     active = models.BooleanField(default=True)
     transferDate = models.DateField(null=True)
     effectiveImmediate = models.BooleanField(default=False, null=True)
+    willNumber = models.TextField(default="")
 
     class Meta:
         db_table = "wills"
