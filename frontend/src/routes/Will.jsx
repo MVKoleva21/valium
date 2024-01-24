@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
 import Nav from "../components/Nav"
+import Notifications from "../components/Notifications"
 import Cookies from "js-cookie"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
@@ -133,6 +134,8 @@ export default function Will() {
                     </div>
                 </div>
             </div>
+
+            <Notifications />
 
             <ToastContainer />
         </>

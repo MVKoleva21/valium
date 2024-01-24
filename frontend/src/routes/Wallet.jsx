@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
 import Nav from "../components/Nav"
+import Notifications from "../components/Notifications"
 
 
 export default function Wallet() {
@@ -90,6 +91,8 @@ export default function Wallet() {
                     </div>
                 </div>
             </div>
+            
+            <Notifications />
         </>
     )
 }

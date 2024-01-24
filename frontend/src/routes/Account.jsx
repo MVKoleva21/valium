@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
 import Nav from "../components/Nav"
+import Notifications from "../components/Notifications"
 import Cookies from "js-cookie"
 import moment from "moment"
+import Notification from "../components/Notification"
 
 export default function Account() {
     let [user, setUser] = useState({})
@@ -79,6 +81,8 @@ export default function Account() {
                     </div>
                 </div>
             </div>
+            
+            <Notifications />
         </>
     )
 }

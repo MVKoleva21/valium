@@ -1,5 +1,6 @@
 import Nav from "../components/Nav"
 import Connection from "../components/Connection"
+import Notifications from "../components/Notifications"
 import { useState, useEffect } from "react"
 import axios from "axios"
 
@@ -33,6 +34,8 @@ export default function Connections() {
                     </div>
                 </div>
              </div>
+            
+            <Notifications />
         </div>
   );
 }
