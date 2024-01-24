@@ -7,7 +7,6 @@ import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 
 export default function Will() {
-    let [user, setUser] = useState({})
     let [userEmails, setUserEmails] = useState([])
     let [usersMatchingEmails, setUsersMatchingEmails] = useState([])
     let [showEmailGuide, setShowEmailGuide] = useState(true)
@@ -17,16 +16,13 @@ export default function Will() {
     let [effectiveImmediate, setEffectiveImmediate] = useState(false)
     let [dateToTransfer, setDateToTransfer] = useState(new Date().toISOString().split('T')[0])
     let [message, setMessage] = useState("")
+    let [title, setTitle] = useState("")
     let [bgnToTransfer, setBgnToTransfer] = useState(0.0)
     let [eurToTransfer, setEurToTransfer] = useState(0.0)
     let [btcToTransfer, setBtcToTransfer] = useState(0.0)
     let [etcToTransfer, setEtcToTransfer] = useState(0.0)
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_BASE_URL_BACKEND}/api/v1/users/current`, {withCredentials: true}).then((res) => {
-            setUser(res.data)
-        })
-
         axios.get(`${import.meta.env.VITE_BASE_URL_BACKEND}/api/v1/users/get`, {withCredentials: true}).then((res) => {
             setUserEmails(res.data)
         })
@@ -66,7 +62,8 @@ export default function Will() {
             },
             transferDate: dateToTransfer,
             transferTo: inheritorEmail,
-            effectiveImmediate: effectiveImmediate
+            effectiveImmediate: effectiveImmediate,
+            title: title
         }
 
         axios.post(`${import.meta.env.VITE_BASE_URL_BACKEND}/api/v1/wills/new/`, data, { 
@@ -110,6 +107,7 @@ export default function Will() {
                                         }
                                     </div>
 
+                                    <input onChange={(e) => {setTitle(e.target.value)}} className="w-full z-10 bg-[#ffffff10] rounded-[10px] p-4" placeholder="Enter message title" type="text" /> 
                                     <textarea onChange={(e) => {setMessage(e.target.value)}} cols="45" className="w-full resize-none p-4 z-10 bg-[#ffffff10] rounded-[10px] mb-6" placeholder="Leave message..." rows="15"></textarea>
                                 </div>
                                 <div className="gap-5 flex flex-col w-full">

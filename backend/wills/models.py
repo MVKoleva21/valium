@@ -4,6 +4,7 @@ from wallets.models import Wallet
 
 class Will(models.Model):
     message = models.TextField(default="")
+    title = models.TextField(default="")
     amounts = models.ForeignKey(Wallet, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True)
     inheritor = models.ForeignKey(User, on_delete=models.CASCADE)

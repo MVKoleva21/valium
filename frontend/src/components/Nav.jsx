@@ -31,15 +31,16 @@ export default function Nav() {
                 </div>
 
                 <div className="mt-[120px] ml-[40px] flex flex-col max-lg:flex-row max-lg:mt-0 max-lg:ml-0">
-                    <NavEntry title="Wallet" click={() => navigator("/wallet")} icon={walletIcon} isSelected={window.location.pathname === "/wallet"}/>
-
                     <NavEntry title="Profile" icon={profileIcon} isSelected={false} click={() => setIsNavShowen(prev => !prev)}/>
                     <div className={`flex flex-col max-lg:absolute max-lg:top-[80px] max-lg:left-0 ${!isNavShown? 'max-lg:hidden': ''} max-lg:bg-black max-lg:w-full max-lg:justify-center max-lg:items-center`}>
-                        <NavSubEntry title="Active Wills" click={() => navigator("/wills/active")} isSelected={window.location.pathname === "/wills/active"} />
+                        <NavSubEntry title="Wills" click={() => navigator("/wills")} isSelected={window.location.pathname === "/wills"} />
                         <NavSubEntry title="Account" click={() => navigator("/account")} isSelected={window.location.pathname === "/account"} />
                     </div>
 
+
+                    <NavEntry title="Wallet" click={() => navigator("/wallet")} icon={walletIcon} isSelected={window.location.pathname === "/wallet"}/>
                     <NavEntry title="Will" click={() => navigator("/will")} icon={willIcon} isSelected={window.location.pathname === "/will"}/>
+                    <NavEntry title="inbox" click={() => navigator("/inbox")} icon={willIcon} isSelected={window.location.pathname === "/inbox"}/>
                 </div>
             </div>
         </>

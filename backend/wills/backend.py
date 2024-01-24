@@ -49,12 +49,13 @@ def date_check():
 
                 InboxEntry.objects.create(
                         user=inheritor,
-                        message=i.message
+                        message=i.message,
+                        title=i.title
                     )
 
                 Notification.objects.create(
                         user=inheritor,
-                        message=f"You have new will from {inheritor.email}. Check your inbox."
+                        message=f"You have new will from {owner.email}. Check your inbox."
                     )
 
 def update_will(data, user, id):
@@ -76,6 +77,7 @@ def update_will(data, user, id):
     will.message = data["message"]
     will.transferDate = str(data["transferDate"])
     will.effectiveImmediate = data["effectiveImmediate"]
+    will.title = data["title"]
 
     will.save()
 
@@ -100,12 +102,13 @@ def update_will(data, user, id):
 
         InboxEntry.objects.create(
                 user=inheritor,
-                message=will.message
+                message=will.message,
+                title=will.title
             )
 
         Notification.objects.create(
                 user=inheritor,
-                message=f"You have new will from {inheritor.email}. Check your inbox."
+                message=f"You have new will from {owner.email}. Check your inbox."
             )
 
     return will
@@ -134,6 +137,7 @@ def add_new_will(data, user):
             transferDate=str(data["transferDate"]),
             owner=owner,
             effectiveImmediate=data["effectiveImmediate"],
+            title=data["title"],
             willNumber=uuid.uuid1()
         )
 
@@ -158,12 +162,13 @@ def add_new_will(data, user):
 
         InboxEntry.objects.create(
                 user=inheritor,
-                message=will.message
+                message=will.message,
+                title=will.title
             )
 
         Notification.objects.create(
                 user=inheritor,
-                message=f"You have new will from {inheritor.email}. Check your inbox."
+                message=f"You have new will from {owner.email}. Check your inbox."
             )
 
     return will
