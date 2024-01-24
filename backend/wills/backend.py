@@ -1,13 +1,12 @@
 from django.shortcuts import get_object_or_404
 from users.models import User
+from notifications.models import Notification
 from wallets.models import Wallet
 from .models import Will
 from inbox.models import InboxEntry
 from django.forms.models import model_to_dict
 from datetime import datetime
 from celery import Celery, shared_task
-from celery.schedules import crontab
-from celery import Celery
 from celery.schedules import crontab
 import uuid
 
@@ -51,6 +50,11 @@ def date_check():
                 InboxEntry.objects.create(
                         user=inheritor,
                         message=i.message
+                    )
+
+                Notification.objects.create(
+                        user=inheritor,
+                        message=f"You have new will from {inheritor.email}. Check your inbox."
                     )
 
 def update_will(data, user, id):
@@ -97,6 +101,11 @@ def update_will(data, user, id):
         InboxEntry.objects.create(
                 user=inheritor,
                 message=will.message
+            )
+
+        Notification.objects.create(
+                user=inheritor,
+                message=f"You have new will from {inheritor.email}. Check your inbox."
             )
 
     return will
@@ -150,6 +159,11 @@ def add_new_will(data, user):
         InboxEntry.objects.create(
                 user=inheritor,
                 message=will.message
+            )
+
+        Notification.objects.create(
+                user=inheritor,
+                message=f"You have new will from {inheritor.email}. Check your inbox."
             )
 
     return will

@@ -44,7 +44,6 @@ def add_notification(request):
 @login_required
 def get_notifications(request):
     notifications = backend.get_notifications(request.user.id, False)
-
     return Response(list(notifications.values()))
 
 @swagger_auto_schema(

@@ -17,4 +17,8 @@ def new_notification(data, id):
 
 def get_notifications(id, unread_only):
     user = User.objects.get(pk=id)
+
+    if not unread_only:
+        return Notification.objects.filter(user=user)
+
     return Notification.objects.filter(user=user, is_read=(not unread_only))
