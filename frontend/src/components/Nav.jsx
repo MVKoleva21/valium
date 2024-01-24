@@ -3,8 +3,6 @@ import axios from "axios"
 import NavEntry from "./NavEntry"
 import NavSubEntry from "./NavSubEntry"
 import { useNavigate } from 'react-router-dom'
-import Notification from './Notification'
-import Message from "./Message"
 
 import walletIcon from '/icons/wallet.svg'
 import profileIcon from '/icons/profile.svg'
@@ -40,7 +38,7 @@ export default function Nav() {
 
                     <NavEntry title="Wallet" click={() => navigator("/wallet")} icon={walletIcon} isSelected={window.location.pathname === "/wallet"}/>
                     <NavEntry title="Will" click={() => navigator("/will")} icon={willIcon} isSelected={window.location.pathname === "/will"}/>
-                    <NavEntry title="inbox" click={() => navigator("/inbox")} icon={willIcon} isSelected={window.location.pathname === "/inbox"}/>
+                    <NavEntry title="Inbox" click={() => navigator("/inbox")} icon={notificationIcon} isSelected={window.location.pathname === "/inbox"}/>
                 </div>
             </div>
         </>
