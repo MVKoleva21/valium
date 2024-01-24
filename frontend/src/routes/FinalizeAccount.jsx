@@ -9,6 +9,7 @@ export default function FinilizeAccout() {
     let [uname, setUname] = useState("")
     let [pin, setPin] = useState("")
     let [gender, setGender] = useState("Male")
+    let [bdate, setBdate] = useState("")
     let navigator = useNavigate()
 
     const handleSubmit = (e) => {
@@ -18,6 +19,7 @@ export default function FinilizeAccout() {
             name: fname + " " + lname,
             username: uname,
             pin: pin,
+            dateOfBirth: bdate,
             gender: gender
         }
 
@@ -46,32 +48,37 @@ export default function FinilizeAccout() {
                         <div className="flex gap-8 max-lg:flex-col max-lg:gap-4">
                             <div className="flex flex-col gap-1 z-10">
                                 <label htmlFor="fname">First Name</label>
-                                <input onChange={(e) => setFname(e.target.value)} type="text" name="fname" className="p-3 rounded-lg bg-[#ffffff05] border-2 border-[#ffffff10]"/>
+                                <input onChange={(e) => setFname(e.target.value)} type="text" required name="fname" className="p-3 rounded-lg bg-[#ffffff05] border-2 border-[#ffffff10]"/>
                             </div>
 
                             <div className="flex flex-col gap-1 z-10">
                                 <label htmlFor="lname">Last Name</label>
-                                <input onChange={(e) => setLname(e.target.value)} type="text" name="lname" className="p-3 rounded-lg bg-[#ffffff05] border-2 border-[#ffffff10]"/>
+                                <input onChange={(e) => setLname(e.target.value)} type="text" required name="lname" className="p-3 rounded-lg bg-[#ffffff05] border-2 border-[#ffffff10]"/>
                             </div>
                         </div>
 
                         <div className="flex flex-col gap-1 z-10">
                             <label htmlFor="uname">Username</label>
-                            <input onChange={(e) => setUname(e.target.value)} type="text" name="uname" className="p-3 rounded-lg bg-[#ffffff05] border-2 border-[#ffffff10]"/>
+                            <input onChange={(e) => setUname(e.target.value)} type="text" required name="uname" className="p-3 rounded-lg bg-[#ffffff05] border-2 border-[#ffffff10]"/>
                         </div>
                         
                         <div className="flex flex-col gap-1 z-10">
                             <label htmlFor="pin">PIN</label>
-                            <input onChange={(e) => setPin(e.target.value)} type="text" name="pin" className="p-3 rounded-lg bg-[#ffffff05] border-2 border-[#ffffff10]"/>
+                            <input onChange={(e) => setPin(e.target.value)} type="text" required name="pin" className="p-3 rounded-lg bg-[#ffffff05] border-2 border-[#ffffff10]"/>
                         </div>
 
                         <div className="flex flex-col gap-1 z-10">
                             <label htmlFor="gender">Gender</label>
-                            <select onChange={(e) => setGender(() => e.target.value)}  name="gender" defaultValue={"male"} id="" className="p-3 rounded-lg bg-[#ffffff05] border-2 border-[#ffffff10]">
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                                <option value="other">Other</option>
+                            <select onChange={(e) => setGender(() => e.target.value)} required name="gender" defaultValue={"male"} id="" className="p-3 rounded-lg bg-[#ffffff05] border-2 border-[#ffffff10]">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
                             </select>
+                        </div>
+
+                        <div className="flex gap-1 flex-col z-10">
+                            <label htmlFor="date">Select Birth Date</label>
+                            <input onChange={(e) => {setBdate(e.target.value)}} type="date" required className="p-3 rounded-lg bg-[#ffffff05] border-2 border-[#ffffff10]" name="date"/>
                         </div>
 
                         <button type="submit" className="px-5 py-3 z-10 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-xl transition-transform transform-gpu hover:-translate-y-1 hover:shadow-md hover:shadow-[#ffffff7f]0">Save</button>

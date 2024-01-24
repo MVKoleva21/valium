@@ -62,14 +62,6 @@ def update_will(data, user, id):
 
     owner = User.objects.get(pk=user.id)
 
-    if not (owner.wallet.bgn >= float(data["amount"]["bgn"]) and 
-            owner.wallet.eur >= float(data["amount"]["eur"]) and
-            owner.wallet.btc >= float(data["amount"]["btc"]) and
-            owner.wallet.etc >= float(data["amount"]["etc"])
-            ):
-        raise Exception("User does not have enough balance")
-
-
     will = Will.objects.get(owner=owner, pk=id) 
 
     will.amounts.bgn = float(data["amount"]["bgn"])
@@ -117,13 +109,6 @@ def add_new_will(data, user):
 
 
     owner = User.objects.get(pk=user.id)
-
-    if not (owner.wallet.bgn >= float(data["amount"]["bgn"]) and 
-            owner.wallet.eur >= float(data["amount"]["eur"]) and
-            owner.wallet.btc >= float(data["amount"]["btc"]) and
-            owner.wallet.etc >= float(data["amount"]["etc"])
-            ):
-        raise Exception("User does not have enough balance")
 
     wallet = Wallet.objects.create(
                 bgn=data["amount"]["bgn"],

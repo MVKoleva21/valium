@@ -1,7 +1,16 @@
 import { useNavigate } from "react-router-dom"
+import { useEffect } from "react"
+import axios from "axios"
 
 export default function Home() {
     let navigate = useNavigate()   
+
+    useEffect(() => {
+        axios.get(`${import.meta.env.VITE_BASE_URL_BACKEND}/api/v1/users/current/`, {withCredentials: true})
+            .then((res) => {
+                navigate("/wills")
+            })
+    }, [])
 
     return (
         <>

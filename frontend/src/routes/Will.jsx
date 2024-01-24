@@ -2,6 +2,8 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import Nav from "../components/Nav"
 import Cookies from "js-cookie"
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
 export default function Will() {
     let [user, setUser] = useState({})
@@ -73,6 +75,8 @@ export default function Will() {
             }
         }).then(() => {
             window.location.reload()
+        }).catch(err => {
+            toast.error(err.response.data.error)
         })
     }
 
@@ -129,6 +133,8 @@ export default function Will() {
                     </div>
                 </div>
             </div>
+
+            <ToastContainer />
         </>
     )
 }

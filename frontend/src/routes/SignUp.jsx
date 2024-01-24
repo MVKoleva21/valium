@@ -1,11 +1,20 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import axios from 'axios'
 import Cookies from 'js-cookie'
+import { useNavigate } from 'react-router-dom'
 
 export default function SignUp() {
     let [userName, setUserName] = useState('')
     let [password, setPassword] = useState('')
     let [confirmPassword, setConfirmPassword] = useState('')
+    let navigator = useNavigate()
+
+    useEffect(() => {
+        axios.get(`${import.meta.env.VITE_BASE_URL_BACKEND}/api/v1/users/current/`, {withCredentials: true})
+            .then(() => {
+                navigator("/wills")
+            })
+    }, [])
 
     const userNameHandler = (e) => {
         setUserName(e.target.value)

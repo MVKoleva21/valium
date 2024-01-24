@@ -23,7 +23,7 @@ def update_will(request, id):
     try:
         new_will = backend.update_will(body, request.user, id)
     except Exception as err:
-        return Response({"error": str(err)})
+        return Response({"error": str(err)}, status=404)
 
     return Response(model_to_dict(new_will))
 
@@ -40,7 +40,7 @@ def add_new_will(request):
     try:
         new_will = backend.add_new_will(body, request.user)
     except Exception as err:
-        return Response({"error": str(err)})
+        return Response({"error": str(err)}, status=404)
 
     return Response(model_to_dict(new_will))
 

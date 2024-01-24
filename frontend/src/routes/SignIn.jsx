@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
@@ -6,6 +6,13 @@ export default function SignIn() {
     let [userName, setUserName] = useState('')
     let [password, setPassword] = useState('')
     let navigator = useNavigate()
+
+    useEffect(() => {
+        axios.get(`${import.meta.env.VITE_BASE_URL_BACKEND}/api/v1/users/current/`, {withCredentials: true})
+            .then((res) => {
+                navigator("/wills")
+            })
+    }, [])
 
     const userNameHandler = (e) => {
         setUserName(e.target.value)

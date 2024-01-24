@@ -26,7 +26,7 @@ export default function Nav() {
         <>
             <div className="min-h-screen z-20 bg-black w-1/5 relative gap-4 flex flex-col max-lg:w-full max-lg:flex-row max-lg:items-center max-lg:justify-center max-lg:h-[80px] max-lg:min-h-0 max-lg:fixed">
                 <div onClick={() => navigator("/account")} className="flex cursor-pointer max-lg:mt-0 justify-center items-center mt-[70px] gap-5">
-                    <img src={`https://api.dicebear.com/7.x/personas/svg?seed=${user.email}`} className="rounded-full" alt="" width={60} />
+                    <img src={`https://ui-avatars.com/api/?name=${user.name}&size=60`} className="rounded-full" alt="" width={60} />
                     <h1>{user.name}</h1>
                 </div>
 

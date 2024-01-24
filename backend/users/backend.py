@@ -21,6 +21,7 @@ def add_user(data, email):
         pin=data["pin"],
         is_active=True,
         gender=data["gender"],
+        dateOfBirth=data["dateOfBirth"],
         wallet=new_wallet)
 
     return new_user
