@@ -16,15 +16,15 @@
 ## 📃 Documentation <a name="docs"></a>
 ### Code & Team Documentation
 
-[Team Documentation](https://github.com/MVKoleva21/valium/blob/main/docs/valium%20-%20Documentation.docx)
+[Team Documentation](https://codingburgas-my.sharepoint.com/:w:/g/personal/mvkoleva21_codingburgas_bg/EWFHKvG0A6RGj6dgv3Le4OYBB0Tjntet8lB1Q3OQMQbGQQ?e=Lfi4HX)
 
 ### QA Documentation
-[QA Documentation](https://github.com/MVKoleva21/valium/blob/main/docs/Valium_-_QA_Documentation.xlsx)
+[QA Documentation](https://codingburgas-my.sharepoint.com/:x:/r/personal/mvkoleva21_codingburgas_bg/Documents/Valium_-_QA_Documentation.xlsx?d=wd7e3030a787f4bb294e2bf8e147a9971&csf=1&web=1&e=W9yg0c)
 
-[Test Plan](https://github.com/MVKoleva21/valium/blob/main/docs/valium%20-%20Test%20Plan.docx)
+[Test Plan](https://codingburgas-my.sharepoint.com/:w:/r/personal/mvkoleva21_codingburgas_bg/Documents/valium%20-%20Test%20Plan.docx?d=w3d23d12e28cb41cbabf4175d2ab9e95f&csf=1&web=1&e=9hhk0q)
 
 ### Presentation
-[Presentation](https://github.com/MVKoleva21/valium/blob/main/docs/VALIUM.pptx)
+[Presentation](https://codingburgas-my.sharepoint.com/:p:/r/personal/mvkoleva21_codingburgas_bg/Documents/VALIUM.pptx?d=wcbc3a5bdae1e4ce08dc9ec7d3cef7538&csf=1&web=1&e=vlh6Bj)
 
 ## 🚀 How to run <a name="install"></a>
 *The following instructions are going to show you how to set up the project*
