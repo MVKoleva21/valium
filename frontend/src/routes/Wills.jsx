@@ -1,41 +1,43 @@
 import Nav from "../components/Nav"
-import Connection from "../components/Connection"
 import Notifications from "../components/Notifications"
 import { useState, useEffect } from "react"
 import axios from "axios"
+import Will from "../components/Will"
 
 export default function Wills() {
-    let [user, setUser] = useState({})
-    let [transferTo, setTransferTo] = useState([])
+    let [wills, setWills] = useState([])
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_BASE_URL_BACKEND}/api/v1/users/current`, {withCredentials: true}).then((res) => {
-            setUser(res.data)
-        })
+        axios.get(`${import.meta.env.VITE_BASE_URL_BACKEND}/api/v1/wills/get/`, {withCredentials: true})
+            .then((res) => {
+                setWills(res.data)
+            })
     }, [])
-    
-    return (
-        <div className="w-screen h-screen flex text-white relative">
-            <Nav />
-            <div className="w-full h-full bg-[#030016] flex flex-col justify-center items-center">
-                <img src="/finalize.png" className="fixed right-0 select-none" draggable={false} alt="" />
-                <img src="/finalize3.png" className="fixed right-0 bottom-0 select-none" draggable={false} alt="" />
-                <img src="/finalize2.png" className="fixed left-[#25] bottom-0 select-none" draggable={false} alt="" />
-            
-                <h1 className="text-white text-6xl font-bold tracking-wider max-md:max-w-full max-md:text-4xl">Connections</h1>
 
-                <div className="mx-auto mt-6">
-                    <div className="gap-5 flex max-md:flex-col">
+    return (
+        <> 
+            <img src="/finalize3.png" className="fixed right-0 bottom-0 select-none" draggable={false} alt="" />
+            <img src="/finalize2.png" className="fixed left-[25%] bottom-0 select-none" draggable={false} alt="" />
+            <img src="/Eclipse.png" className="fixed left-[25%] top-0 select-none" draggable={false} alt="" />
+
+            <div className="w-full flex text-white">
+                <Nav />
+
+                <div className="w-full min-h-screen bg-[#030016] flex flex-col max-lg:mt-[80px]"> 
+                    <h1 className="z-10 text-6xl mt-[60px] ml-[80px] font-bold">Wills</h1>
+
+                    <div className="p-24 w-full h-full grid grid-cols-5 items-start justify-center gap-16 max-lg:grid-cols-1">
                         {
-                            transferTo.map((e) => { 
-                                return <Connection email={e.transfer_to_email}/>
+
+                            wills.map((item) => {
+                                return <Will key={item.id} item={item} />
                             })
                         }
                     </div>
                 </div>
-             </div>
-            
+            </div>
+
             <Notifications />
-        </div>
-  );
+        </>
+    )
 }

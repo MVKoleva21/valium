@@ -6,7 +6,7 @@ class Will(models.Model):
     message = models.TextField(default="")
     title = models.TextField(default="")
     amounts = models.ForeignKey(Wallet, on_delete=models.CASCADE)
-    timestamp = models.DateTimeField(auto_now_add=True)
+    timestamp = models.DateField(auto_now_add=True)
     inheritor = models.ForeignKey(User, on_delete=models.CASCADE)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owner')      
     active = models.BooleanField(default=True)

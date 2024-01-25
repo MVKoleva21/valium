@@ -91,7 +91,7 @@ export default function Will() {
                     <h1 className="z-10 text-6xl mt-[60px] ml-[80px] font-bold">Will</h1> 
 
                     <div className="w-full h-full flex justify-center items-center">
-                        <form onSubmit={handleSumbition} className="w-[85%] my-10  bg-[#1C1C1C60] z-10 rounded-[16px] p-12 flex flex-col justify-center items-center gap-10">
+                        <form onSubmit={handleSumbition} className="w-[85%] my-10 backdrop-blur bg-[#1C1C1C60] z-10 rounded-[16px] p-12 flex flex-col justify-center items-center gap-10">
                             <div className="flex justify-center items-start gap-10 w-full max-lg:flex-col">
                                 <div className="flex justify-center gap-5 items-center w-full flex-col">
                                     <div className="relative w-full">
