@@ -18,6 +18,8 @@
 
 [Team Documentation](https://codingburgas-my.sharepoint.com/:w:/g/personal/mvkoleva21_codingburgas_bg/EWFHKvG0A6RGj6dgv3Le4OYBB0Tjntet8lB1Q3OQMQbGQQ?e=Lfi4HX)
 
+[API Documentation](https://api.valiumonline.live/docs/)
+
 ### QA Documentation
 [QA Documentation](https://codingburgas-my.sharepoint.com/:x:/r/personal/mvkoleva21_codingburgas_bg/Documents/Valium_-_QA_Documentation.xlsx?d=wd7e3030a787f4bb294e2bf8e147a9971&csf=1&web=1&e=W9yg0c)
 
