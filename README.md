@@ -26,7 +26,7 @@
 [Test Plan](https://codingburgas-my.sharepoint.com/:w:/r/personal/mvkoleva21_codingburgas_bg/Documents/valium%20-%20Test%20Plan.docx?d=w3d23d12e28cb41cbabf4175d2ab9e95f&csf=1&web=1&e=9hhk0q)
 
 ### Presentation
-[Presentation](https://codingburgas-my.sharepoint.com/:p:/r/personal/mvkoleva21_codingburgas_bg/Documents/VALIUM.pptx?d=wcbc3a5bdae1e4ce08dc9ec7d3cef7538&csf=1&web=1&e=vlh6Bj)
+[Presentation](https://codingburgas-my.sharepoint.com/:p:/r/personal/mvkoleva21_codingburgas_bg/Documents/valium%20-%20Presentation.pptx?d=wd910d370d2dc4a9299dab9aa14f8dfa1&csf=1&web=1&e=gZf4xl)
 
 ## 🚀 How to run <a name="install"></a>
 *The following instructions are going to show you how to set up the project*
