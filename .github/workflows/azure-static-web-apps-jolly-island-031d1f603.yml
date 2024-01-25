@@ -36,6 +36,7 @@ jobs:
           ###### End of Repository/Build Configurations ######
         env:
           VITE_BASE_URL_BACKEND: ${{ secrets.BASE_BACKEND_URL }} 
+          VITE_CURRENCY_API_KEY: ${{ secrets.CURRENCY_API_KEY }}
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
