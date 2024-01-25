@@ -30,7 +30,7 @@ export default function FinilizeAccout() {
                 "X-CSRFToken": Cookies.get('csrftoken')
             }
         }).then(() => {
-            navigator("/wills")
+            navigator("/services")
         })
     }
 
@@ -44,7 +44,7 @@ export default function FinilizeAccout() {
                 <div className="p-4">
                     <h1 className="font-bold max-lg:text-center text-4xl">Finish profile set up</h1>
                     
-                    <form method="post" className="flex z-10 relative flex-col gap-4 bg-[#1C1C1C60] p-8 py-14 my-16 rounded-2xl" onSubmit={handleSubmit}>
+                    <form method="post" className="flex backdrop-blur z-10 relative flex-col gap-4 bg-[#1C1C1C60] p-8 py-14 my-16 rounded-2xl" onSubmit={handleSubmit}>
                         <div className="flex gap-8 max-lg:flex-col max-lg:gap-4">
                             <div className="flex flex-col gap-1 z-10">
                                 <label htmlFor="fname">First Name</label>

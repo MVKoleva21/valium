@@ -19,7 +19,7 @@
           ]
       },
       {
-          "route": "/wills",
+          "route": "/services",
           "allowedRoles": [
               "anonymous",
           ]
@@ -43,7 +43,19 @@
           ]
       },
       {
-          "route": "/connections",
+          "route": "/wills",
+          "allowedRoles": [
+              "anonymous",
+          ]
+      },
+      {
+          "route": "/inbox",
+          "allowedRoles": [
+              "anonymous",
+          ]
+      },
+      {
+          "route": "/exchange",
           "allowedRoles": [
               "anonymous",
           ]

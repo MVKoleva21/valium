@@ -50,11 +50,11 @@ export default function Wallet() {
 
                     <div className="w-full h-full flex flex-col items-center justify-center">
                         <div className="w-[90%] h-full flex gap-10 justify-center items-center z-10">
-                            <div className="w-3/5 py-3 rounded-[16px] bg-[#1C1C1C60] min-h-[50%] max-md:hidden justify-center items-center flex">
+                            <div className="w-3/5 py-3 rounded-[16px] backdrop-blur bg-[#1C1C1C60] min-h-[50%] max-md:hidden justify-center items-center flex">
                                <img src="/Cards.png" className="z-10" draggable={false} alt="" /> 
                             </div> 
                             
-                            <div className="w-full min-h-[80%] py-8 bg-[#1C1C1C60] rounded-[16px] flex justify-center items-center z-10">
+                            <div className="w-full min-h-[80%] py-8 backdrop-blur bg-[#1C1C1C60] rounded-[16px] flex justify-center items-center z-10">
                                 <div className="w-[80%] h-[80%]">
                                     <h1 className="text-4xl font-bold z-10">Balance</h1>
                                     

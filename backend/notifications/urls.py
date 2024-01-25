@@ -5,5 +5,5 @@ urlpatterns = [
    path('new/', views.add_notification),
    path('get/', views.get_notifications),
    path('get/unread/', views.get_notifications_unread),
-   path('read/<int:id>/', views.read_notification),
+   path('<int:id>/read/', views.read_notification),
 ]

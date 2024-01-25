@@ -60,7 +60,7 @@ def date_check():
 
 def update_will(data, user, id):
     try:
-        inheritor = User.objects.get(email=data["transferTo"])
+        inheritor = User.objects.get(email=data["inheritor"])
     except:
         raise Exception("User does not exist")
 
@@ -69,10 +69,10 @@ def update_will(data, user, id):
 
     will = Will.objects.get(owner=owner, pk=id) 
 
-    will.amounts.bgn = float(data["amount"]["bgn"])
-    will.amounts.eur = float(data["amount"]["eur"])
-    will.amounts.btc = float(data["amount"]["btc"])
-    will.amounts.etc = float(data["amount"]["etc"])
+    will.amounts.bgn = float(data["amounts"]["bgn"])
+    will.amounts.eur = float(data["amounts"]["eur"])
+    will.amounts.btc = float(data["amounts"]["btc"])
+    will.amounts.etc = float(data["amounts"]["etc"])
 
     will.message = data["message"]
     will.transferDate = str(data["transferDate"])
@@ -176,8 +176,18 @@ def add_new_will(data, user):
 def get_wills(user):
     user = User.objects.get(pk=user.id)
     wills = Will.objects.filter(owner=user) 
+    will_list = []
 
-    return list(wills.values())
+    for i in wills:
+        inheritor = User.objects.get(pk=i.inheritor_id)
+        will_dict = model_to_dict(i)
+        will_dict["inheritor"] = inheritor.email
+        will_dict["timestamp"] = i.timestamp
+        will_dict["amounts"] = model_to_dict(Wallet.objects.get(pk=i.amounts_id))
+
+        will_list.append(will_dict)
+
+    return will_list
 
 def get_will(user, id):
     user = User.objects.get(pk=user.id)
@@ -189,5 +199,7 @@ def delete_will(user, id):
     user = User.objects.get(pk=user.id)
     will = Will.objects.get(owner=user, pk=id) 
 
+    will.delete()
+        
     return will
 

@@ -12,6 +12,7 @@ import Will from './routes/Will'
 import Account from './routes/Account'
 import Wills from './routes/Wills';
 import Inbox from './routes/Inbox'
+import Exchange from './routes/Exchange'
 
 export default function App() {
   const BrowserRouter = createBrowserRouter([
@@ -24,7 +25,8 @@ export default function App() {
     { path: '/will', element: <Protected> <Will /> </Protected>},
     { path: '/account', element: <Protected> <Account /> </Protected>},
     { path: '/wills', element: <Protected> <Wills /> </Protected> },
-    { path: '/inbox', element: <Protected> <Inbox /> </Protected> }
+    { path: '/inbox', element: <Protected> <Inbox /> </Protected> },
+    { path: '/exchange', element: <Protected> <Exchange /> </Protected> }
   ])
 
   return (

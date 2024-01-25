@@ -7,7 +7,8 @@ import { useNavigate } from 'react-router-dom'
 import walletIcon from '/icons/wallet.svg'
 import profileIcon from '/icons/profile.svg'
 import willIcon from '/icons/will.svg'
-import notificationIcon from '/icons/notifications.svg'
+import inboxIcon from '/icons/inbox.png'
+import transferIcon from '/icons/exchange.png'
 
 export default function Nav() {
     let [user, setUser] = useState({})
@@ -38,7 +39,8 @@ export default function Nav() {
 
                     <NavEntry title="Wallet" click={() => navigator("/wallet")} icon={walletIcon} isSelected={window.location.pathname === "/wallet"}/>
                     <NavEntry title="Will" click={() => navigator("/will")} icon={willIcon} isSelected={window.location.pathname === "/will"}/>
-                    <NavEntry title="Inbox" click={() => navigator("/inbox")} icon={notificationIcon} isSelected={window.location.pathname === "/inbox"}/>
+                    <NavEntry title="Inbox" click={() => navigator("/inbox")} icon={inboxIcon} isSelected={window.location.pathname === "/inbox"}/>
+                    <NavEntry title="Exchange" click={() => navigator("/exchange")} icon={transferIcon} isSelected={window.location.pathname === "/exchange"}/>
                 </div>
             </div>
         </>
