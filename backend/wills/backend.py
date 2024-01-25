@@ -49,12 +49,14 @@ def date_check():
 
                 InboxEntry.objects.create(
                         user=inheritor,
+                        userFrom=owner,
                         message=i.message,
                         title=i.title
                     )
 
                 Notification.objects.create(
                         user=inheritor,
+                        userFrom=user,
                         message=f"You have new will from {owner.email}. Check your inbox."
                     )
 
@@ -102,6 +104,7 @@ def update_will(data, user, id):
 
         InboxEntry.objects.create(
                 user=inheritor,
+                userFrom=owner,
                 message=will.message,
                 title=will.title
             )
@@ -162,6 +165,7 @@ def add_new_will(data, user):
 
         InboxEntry.objects.create(
                 user=inheritor,
+                userFrom=owner,
                 message=will.message,
                 title=will.title
             )

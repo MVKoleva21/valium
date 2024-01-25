@@ -9,4 +9,13 @@ def get_inbox(user_id, id=0):
     if id != 0:
         return InboxEntry.objects.get(pk=id, user=user)
 
-    return InboxEntry.objects.filter(user=user)
+    ibox_entry = InboxEntry.objects.filter(user=user)
+    ibox_list = []
+
+    for i in ibox_entry:
+        user_from = User.objects.get(pk=i.userFrom_id)
+        i = model_to_dict(i)
+        i["userFrom"] = model_to_dict(user_from)
+        ibox_list.append(i)
+
+    return ibox_list

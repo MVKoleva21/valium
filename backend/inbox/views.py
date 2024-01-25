@@ -33,4 +33,4 @@ def get_inbox_entry(request, id):
 def get_inbox(request):
     inbox = backend.get_inbox(request.user.id, 0)
 
-    return Response(list(inbox.values()))
+    return Response(inbox)
