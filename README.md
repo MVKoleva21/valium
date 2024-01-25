@@ -17,17 +17,17 @@
 
 ### Code & Team Documentation
 
-[Team Documentation](https://codingburgas-my.sharepoint.com/:w:/g/personal/mvkoleva21_codingburgas_bg/EWFHKvG0A6RGj6dgv3Le4OYBB0Tjntet8lB1Q3OQMQbGQQ?e=Lfi4HX)
+[Team Documentation](https://codingburgas-my.sharepoint.com/:w:/g/personal/mvkoleva21_codingburgas_bg/EWFHKvG0A6RGj6dgv3Le4OYBnK3bFzBSj7Ca2-XPRBZciw?e=ctyfR4)
 
 [API Documentation](https://api.valiumonline.live/docs/)
 <br></br>
 ### QA Documentation
-[QA Documentation](https://codingburgas-my.sharepoint.com/:x:/r/personal/mvkoleva21_codingburgas_bg/Documents/Valium_-_QA_Documentation.xlsx?d=wd7e3030a787f4bb294e2bf8e147a9971&csf=1&web=1&e=W9yg0c)
+[QA Documentation](https://codingburgas-my.sharepoint.com/:x:/g/personal/mvkoleva21_codingburgas_bg/EQoD49d_eLJLlOK_jhR6mXEBCgkkm7XGP_eKm4JVxPuDxg?e=SSBCzW)
 
-[Test Plan](https://codingburgas-my.sharepoint.com/:w:/r/personal/mvkoleva21_codingburgas_bg/Documents/valium%20-%20Test%20Plan.docx?d=w3d23d12e28cb41cbabf4175d2ab9e95f&csf=1&web=1&e=9hhk0q)
+[Test Plan](https://codingburgas-my.sharepoint.com/:w:/g/personal/mvkoleva21_codingburgas_bg/ES7RIz3LKMtBq_QXXSq56V8BNq3opkRkQ2dbvfWY6MZGYA?e=yoW7Ja)
 <br></br>
 ### Presentation
-[Presentation](https://codingburgas-my.sharepoint.com/:p:/r/personal/mvkoleva21_codingburgas_bg/Documents/valium%20-%20Presentation.pptx?d=wd910d370d2dc4a9299dab9aa14f8dfa1&csf=1&web=1&e=gZf4xl)
+[Presentation](https://codingburgas-my.sharepoint.com/:p:/g/personal/mvkoleva21_codingburgas_bg/EXDTENnc0pJKmdq5qhT436EBgybBAoMOYnMjnvx7JPBxRQ?e=H9lu6Q)
 <br></br>
 ## 🚀 How to run <a name="install"></a>
 *The following instructions are going to show you how to set up the project*
