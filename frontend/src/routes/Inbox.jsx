@@ -4,7 +4,7 @@ import Nav from "../components/Nav"
 import InboxEntry from "../components/InboxEntry"
 
 export default function Inbox() {
-    let [inbox, setInbox] = useState([{userFrom: "None"}])
+    let [inbox, setInbox] = useState([])
     let [inboxIndex, setInboxIndex] = useState(0)
 
     useEffect(() => {
@@ -54,23 +54,22 @@ export default function Inbox() {
                                 </div>
 
                                 <section className="bg-[#ffffff05] z-10 flex grow flex-col w-full pl-16 pr-20 py-12 rounded-xl items-start max-md:max-w-full max-md:mt-10 max-md:px-5">
-                                    <div className="flex w-[117px] max-w-full items-stretch gap-4">
-                                        <img src={`https://ui-avatars.com/api/?name=${inbox[inboxIndex]["userFrom"].name}&size=60`} className="rounded-full" alt="" width={60} />
+                                    <div className="flex w-full justify-center items-center max-w-full gap-4">
+                                        {inbox.length != 0 && <img src={`https://ui-avatars.com/api/?name=${inbox[inboxIndex]["userFrom"].name}&size=60`} className="rounded-full" alt="" width={60} />}
 
-                                        <div className="text-white font-medium text-sm mt-3.5 self-start">
-                                            {inbox[inboxIndex]["userFrom"].name}
+                                        <div className="text-white font-medium text-sm mt-3.5 w-full self-start">
+                                            {inbox.length != 0 && inbox[inboxIndex]["userFrom"].name}
                                         </div>
 
                                     </div>
 
                                     <h2 className="text-white text-2xl font-bold mt-6 max-md:max-w-full">
-                                        {inbox[inboxIndex].title}
+                                        {inbox.length != 0 && inbox[inboxIndex].title}
                                     </h2>
 
                                     <div className="text-neutral-400 text-sm leading-7 w-[726px] ml-3 mt-3.5 max-md:ml-2.05 font-semibold">
-                                        {inbox[inboxIndex].message}
+                                        {inbox.length != 0 && inbox[inboxIndex].message}
                                     </div>
-
                                 </section>
                             </div>
                         </div>
